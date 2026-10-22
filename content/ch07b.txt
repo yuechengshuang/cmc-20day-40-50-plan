@@ -1,0 +1,648 @@
+@@CHAPTER 第七章 定积分应用与积分综合（专项题库）
+
+@@SECTION 7.3 题型三 积分不等式与积分中值定理
+
+@@METHOD
+这一类题记住四句话。① 看到被积函数里含有 $n$、$a$ 这类参数，而题目问的是极限或估值，首先不要硬算积分，而是用放缩：把被积函数放大成一个好算的函数、再缩小成另一个好算的函数，得到两条能算出结果的上下界。② 比较两个积分 $A$ 与 $B$ 的大小时，固定用"作差法"：令 $h(x)$ 等于两个被积函数之差，只要在积分区间上判断出 $h(x)$ 的符号，就能判断 $A-B$ 的符号，这一步的关键是通分或提公因式。③ 用积分中值定理 $\int_a^b f(x)\,dx=f(\xi)(b-a)$（要求 $f$ 在 $[a,b]$ 上连续）可以把积分变成一个函数值乘以区间长度，但它只能说明 $\xi$ 存在，$\xi$ 的具体位置未知，所以常常还要配合 $\xi$ 落在区间内这一条来作进一步估计。④ 记住柯西积分不等式 $\left(\int_a^b f(x)g(x)\,dx\right)^2\leq\int_a^b f^2(x)\,dx\int_a^b g^2(x)\,dx$，凡是题目要求证明"平方的积分不超过两个积分之积"这种形式，就直接套它。
+@@METHODEND
+
+@@PROBLEM id=7.3-1 type=母题 star=★★ time=7分钟 imp=★★★★★ kp=定积分/积分中值定理
+@@STEM
+求极限 $\lim_{n\to\infty}\int_0^1\frac{x^n}{1+x}\,dx$。（专项训练原创题）
+@@POINT
+用积分中值定理与上下界放缩估计含参数 $n$ 的积分。
+@@IDENTIFY
+看到积分号里含有 $x^n$、积分区间是固定的 $[0,1]$、而题目问的是 $n\to\infty$ 时的极限，属于"含参数积分的估值与极限"题型 → 想到先把被积函数在 $[0,1]$ 上放成两条与 $n$ 有关的简单界，再用夹逼准则取极限。
+@@FORMULAS
+1. 积分中值定理：若 $f$ 在 $[a,b]$ 上连续，则存在 $\xi\in[a,b]$，使 $\int_a^b f(x)\,dx=f(\xi)(b-a)$
+2. 幂函数积分公式：$\int_0^1 x^n\,dx=\frac{1}{n+1}\quad(n\geq 0)$
+3. 数列极限：$\lim_{n\to\infty}\frac{1}{n+1}=0$
+@@IDEA
+被积函数是 $\frac{x^n}{1+x}$，在 $[0,1]$ 上 $x^n$ 与 $\frac{1}{1+x}$ 都是连续的，所以可以用积分中值定理把积分写成"某个函数值 $\times$ 区间长度 1"。但积分中值定理里的 $\xi$ 具体在哪里并不知道，因此还要补一步估计：不管 $\xi$ 在 $[0,1]$ 上取什么值，都有 $0<\xi^n\leq 1$ 且 $\frac{1}{1+\xi}\leq 1$，而 $\frac{1}{1+\xi}\geq\frac12$。有了 $\frac{1}{2}\xi^n\leq\frac{\xi^n}{1+\xi}\leq\xi^n$，两边再对 $n$ 取极限就能夹出结果。
+@@SOLUTION
+被积函数 $f(x)=\frac{x^n}{1+x}$ 在闭区间 $[0,1]$ 上连续（因为分母 $1+x\geq 1>0$，不会为零），满足积分中值定理的条件，因此存在 $\xi\in[0,1]$，使得
+$$\int_0^1\frac{x^n}{1+x}\,dx=f(\xi)\cdot(1-0)=\frac{\xi^n}{1+\xi}$$
+下面估计 $\frac{\xi^n}{1+\xi}$ 的范围。因为 $\xi\in[0,1]$，所以 $1\leq 1+\xi\leq 2$，两边取倒数得
+$$\frac12\leq\frac{1}{1+\xi}\leq 1$$
+又因为 $\xi^n\geq 0$，把上式每一项都乘以 $\xi^n$（乘一个非负数不改变不等号方向）得
+$$0\leq\frac{1}{2}\xi^n\leq\frac{\xi^n}{1+\xi}\leq\xi^n$$
+于是得到
+$$0\leq\int_0^1\frac{x^n}{1+x}\,dx\leq\xi^n\leq 1$$
+这个上界 $1$ 不随 $n$ 变化，用它取极限得不到结果，说明放缩太松，要换成能算出极限的一对界。回到原积分，对任意 $x\in[0,1]$ 都有 $\frac12\leq\frac{1}{1+x}\leq 1$，乘以非负的 $x^n$ 后得
+$$\frac{1}{2}x^n\leq\frac{x^n}{1+x}\leq x^n$$
+在 $[0,1]$ 上对三项分别积分（积分的保序性：被积函数大则积分大），得到
+$$\frac12\int_0^1 x^n\,dx\leq\int_0^1\frac{x^n}{1+x}\,dx\leq\int_0^1 x^n\,dx$$
+用幂函数积分公式算出 $\int_0^1 x^n\,dx=\left[\frac{x^{n+1}}{n+1}\right]_0^1=\frac{1}{n+1}-0=\frac{1}{n+1}$，代入上式得
+$$\frac{1}{2(n+1)}\leq\int_0^1\frac{x^n}{1+x}\,dx\leq\frac{1}{n+1}$$
+左右两个界都是只含 $n$ 的式子，让 $n\to\infty$ 取极限：
+$$\lim_{n\to\infty}\frac{1}{2(n+1)}=0,\qquad \lim_{n\to\infty}\frac{1}{n+1}=0$$
+两边极限相等，由夹逼准则得
+$$\lim_{n\to\infty}\int_0^1\frac{x^n}{1+x}\,dx=0$$
+验算：取 $n=1$ 时被积函数 $\frac{x}{1+x}=1-\frac{1}{1+x}$，积分等于 $1-\ln 2\approx 0.3069$，而 $\frac{1}{2\times 2}=0.25\leq 0.3069\leq\frac12=0.5$，与上面的估计一致。
+@@ANSWER
+$0$
+@@PITFALL
+第一个易错点是直接对被积函数用积分中值定理后就认为做完了：积分中值定理只给出"存在 $\xi$"，$\xi$ 未知，不把 $\xi$ 的范围转化成对积分的上界下界，就得不到极限。第二个易错点是放得太松，例如只用 $0\leq\frac{x^n}{1+x}\leq 1$ 得到 $0\leq I_n\leq 1$，两边极限不相等，夹逼失效。第三个易错点是把 $\frac{1}{1+x}$ 在 $[0,1]$ 上的最小值记成 $1$、最大值记成 $\frac12$，记反了会让不等式方向错误。
+@@TIPS
+以后看到"积分号里带 $x^n$、区间固定、问 $n\to\infty$ 的极限"，固定两步走：第一步在积分区间上把除 $x^n$ 以外的因子夹在两个常数之间；第二步连同 $x^n$ 一起积分，得到 $\frac{c_1}{n+1}$ 与 $\frac{c_2}{n+1}$，再用夹逼准则。
+@@SUMMARY
+看到 $\int_0^1 x^n g(x)\,dx$ 求极限 → 先把 $g(x)$ 夹在两个常数之间 → 再乘 $x^n$ 积分 → 夹逼得 0。
+
+@@PROBLEM id=7.3-2 type=变式 star=★★ time=7分钟 imp=★★★★ kp=定积分/积分不等式
+@@STEM
+证明：$\int_0^1\frac{x^2}{1+x}\,dx<\int_0^1\frac{x}{1+x}\,dx$。（专项训练原创题）
+@@POINT
+用"作差法 + 被积函数符号"比较两个定积分的大小。
+@@IDENTIFY
+看到题目要比较两个同区间定积分的大小、两个被积函数结构完全相同而只是分子上的幂次不同，属于"积分大小比较"题型 → 想到作差法：把两个积分相减合并成一个积分，再判断被积函数在区间上的符号。
+@@FORMULAS
+1. 积分的保序性：若在 $[a,b]$ 上 $f(x)\leq g(x)$，则 $\int_a^b f(x)\,dx\leq\int_a^b g(x)\,dx$
+2. 积分的线性性质：$\int_a^b f(x)\,dx-\int_a^b g(x)\,dx=\int_a^b\left(f(x)-g(x)\right)dx$
+3. 区间 $[0,1]$ 上的基本事实：$0\leq x\leq 1$ 时 $x^2\leq x$
+@@IDEA
+两个积分的积分区间都是 $[0,1]$，被积函数的分母都是 $1+x>0$，所以可以把两个积分相减，让它们共用一个积分号。相减后分子是 $x^2-x=-x(1-x)$，本题的第一个关键点就在这里：当 $0<x<1$ 时 $x>0$ 且 $1-x>0$，乘积为正，添上负号后为负，说明被积函数在整个开区间上小于零。而积分有保序性，被积函数小则积分小，于是差小于零，结论成立。
+@@SOLUTION
+设
+$$I_1=\int_0^1\frac{x^2}{1+x}\,dx,\qquad I_2=\int_0^1\frac{x}{1+x}\,dx$$
+因为两个积分的积分区间相同，由积分的线性性质可以把它们合并到同一个积分号里：
+$$I_1-I_2=\int_0^1\frac{x^2}{1+x}\,dx-\int_0^1\frac{x}{1+x}\,dx=\int_0^1\left(\frac{x^2}{1+x}-\frac{x}{1+x}\right)dx$$
+分母相同时直接通分，分子相减：
+$$\frac{x^2}{1+x}-\frac{x}{1+x}=\frac{x^2-x}{1+x}=\frac{-x(1-x)}{1+x}=-\frac{x(1-x)}{1+x}$$
+现在判断符号。当 $0<x<1$ 时，$x>0$，$1-x>0$，$1+x>0$，所以
+$$\frac{x(1-x)}{1+x}>0$$
+添上负号得
+$$\frac{x^2}{1+x}-\frac{x}{1+x}=-\frac{x(1-x)}{1+x}<0\quad(0<x<1)$$
+也就是说，在 $(0,1)$ 上被积函数处处为负。由积分的保序性（被积函数小于零，其积分就小于零）：
+$$I_1-I_2=\int_0^1\left(-\frac{x(1-x)}{1+x}\right)dx<0$$
+所以 $I_1<I_2$，即
+$$\int_0^1\frac{x^2}{1+x}\,dx<\int_0^1\frac{x}{1+x}\,dx$$
+验算：分别算出两个积分的精确值。
+$$I_1=\int_0^1\frac{x^2}{1+x}\,dx=\int_0^1\left(x-1+\frac{1}{1+x}\right)dx=\left[\frac{x^2}{2}-x+\ln(1+x)\right]_0^1=\frac12-1+\ln 2=\ln 2-\frac12$$
+$$I_2=\int_0^1\frac{x}{1+x}\,dx=\int_0^1\left(1-\frac{1}{1+x}\right)dx=\left[x-\ln(1+x)\right]_0^1=1-\ln 2$$
+两式相减得 $I_1-I_2=\ln 2-\frac12-1+\ln 2=2\ln 2-\frac32$。用 $\ln 2\approx 0.6931$ 代入得 $2\times 0.6931-1.5=-0.1137<0$，与结论 $I_1<I_2$ 完全一致。
+@@ANSWER
+$I_1-I_2=2\ln 2-\frac32<0$，所以 $\int_0^1\frac{x^2}{1+x}\,dx<\int_0^1\frac{x}{1+x}\,dx$
+@@PITFALL
+第一个易错点是不作差，而是"看着分子 $x^2$ 比 $x$ 小就下结论"：分子虽小，但分母相同、都要除以 $1+x$，必须把两个分式合并成一个分式后再判号，不能凭感觉。第二个易错点是在 $[0,1]$ 上判号时把 $x=0$ 与 $x=1$ 也写进严格不等号，这两点被积函数都等于 $0$，严格不等号只对开区间 $(0,1)$ 成立，但对积分值没有影响，写结论时要说明"在 $(0,1)$ 上小于零"。第三个易错点是 $\int_0^1\frac{x^2}{1+x}\,dx$ 里做多项式除法时算错：$\frac{x^2}{1+x}=x-1+\frac{1}{1+x}$，可以乘回去检查 $x-1+\frac{1}{1+x}=\frac{(x-1)(1+x)+1}{1+x}=\frac{x^2-1+1}{1+x}=\frac{x^2}{1+x}$。
+@@TIPS
+以后只要题目是比较"两个同区间、结构相似的积分"的大小，固定用三步：① 写成 $\int_a^b(f-g)\,dx$；② 通分或提公因式，把 $f-g$ 化成能一眼看出符号的形式；③ 在区间上判号，用积分保序性下结论。
+@@SUMMARY
+看到比较两个同区间积分的大小 → 先作差合并成一个积分 → 再判被积函数的符号。
+
+@@PROBLEM id=7.3-3 type=变式 star=★★ time=7分钟 imp=★★★★ kp=定积分/积分不等式
+@@STEM
+证明：$2(e-1)^2\leq e^2-1$。（专项训练原创题）
+@@POINT
+柯西积分不等式（施瓦茨不等式）的应用。
+@@IDENTIFY
+看到待证不等式里出现 $e$ 的平方与 $e-1$ 的平方、要求证明"一个平方不超过两个数之积"，属于典型的"积分形式的不等式证明"题型 → 想到构造两个函数 $f(x)=e^x$ 与 $g(x)=1$，在区间 $[0,1]$ 上套用柯西积分不等式，把左右两边分别算成 $e^2-1$ 与 $(e-1)^2$。
+@@FORMULAS
+1. 柯西积分不等式：$\left(\int_a^b f(x)g(x)\,dx\right)^2\leq\int_a^b f^2(x)\,dx\int_a^b g^2(x)\,dx$
+2. 指数函数积分：$\int_0^1 e^x\,dx=e-1$
+3. 指数函数积分：$\int_0^1 e^{2x}\,dx=\frac{e^2-1}{2}$
+4. 常函数积分：$\int_0^1 1^2\,dx=1$
+@@IDEA
+柯西积分不等式的标准形式是"内积的平方不超过各自平方积分之积"。本题左边是 $(e-1)^2$，而 $e-1=\int_0^1 e^x\,dx$，很自然地把 $\int_0^1 e^x\,dx$ 看成 $\int_0^1 e^x\cdot 1\,dx$，也就是取 $f(x)=e^x$、$g(x)=1$。右边会算出 $\int_0^1 e^{2x}\,dx\cdot\int_0^1 1\,dx=\frac{e^2-1}{2}$，于是不等式就是 $(e-1)^2\leq\frac{e^2-1}{2}$，两边乘以 2 即得题目的形式。最后再用最基础的初等不等式 $e<3$ 把不等号方向验算清楚。
+@@SOLUTION
+在区间 $[0,1]$ 上取 $f(x)=e^x$，$g(x)=1$。这两个函数在 $[0,1]$ 上都连续，满足柯西积分不等式的条件，于是
+$$\left(\int_0^1 e^x\cdot 1\,dx\right)^2\leq\int_0^1\left(e^x\right)^2dx\cdot\int_0^1 1^2\,dx$$
+先把每个积分分别算出来。第一项：
+$$\int_0^1 e^x\cdot 1\,dx=\int_0^1 e^x\,dx=\left[e^x\right]_0^1=e^1-e^0=e-1$$
+第二项，注意 $\left(e^x\right)^2=e^{2x}$，而 $e^{2x}$ 的一个原函数是 $\frac{e^{2x}}{2}$（因为 $\left(\frac{e^{2x}}{2}\right)'=\frac{2e^{2x}}{2}=e^{2x}$，可以用求导检查）：
+$$\int_0^1 e^{2x}\,dx=\left[\frac{e^{2x}}{2}\right]_0^1=\frac{e^2}{2}-\frac{e^0}{2}=\frac{e^2}{2}-\frac12=\frac{e^2-1}{2}$$
+第三项：
+$$\int_0^1 1^2\,dx=\int_0^1 1\,dx=\left[x\right]_0^1=1-0=1$$
+把三个结果代回柯西积分不等式：
+$$(e-1)^2\leq\frac{e^2-1}{2}\cdot 1=\frac{e^2-1}{2}$$
+两边同时乘以正数 $2$，不等号方向不变，得到
+$$2(e-1)^2\leq e^2-1$$
+这就是要证的结论。下面验算一下这个不等式确实是严格成立的：把 $(e-1)^2$ 展开，
+$$2(e-1)^2=2\left(e^2-2e+1\right)=2e^2-4e+2$$
+于是
+$$e^2-1-2(e-1)^2=e^2-1-\left(2e^2-4e+2\right)=-e^2+4e-3=-\left(e^2-4e+3\right)=-(e-1)(e-3)$$
+因为 $e\approx 2.71828$，所以 $e-1>0$，$e-3<0$，乘起来为负，添上负号后为正，即
+$$e^2-1-2(e-1)^2=-(e-1)(e-3)>0$$
+代入数值也可以核对：$2(e-1)^2=2\times 1.71828^2=2\times 2.95249=5.90498$，$e^2-1=7.38906-1=6.38906$，确实有 $5.90498<6.38906$。
+@@ANSWER
+$2(e-1)^2\leq e^2-1$
+@@PITFALL
+第一个易错点是 $\int_0^1 e^{2x}\,dx$ 算成 $\frac{e^2-1}{2}$ 之外的式子，比如误写成 $\frac{e^2}{2}$，忘记把下限 $0$ 代进去；牢记 $\left[\frac{e^{2x}}{2}\right]_0^1$ 要减去 $x=0$ 时的值 $\frac12$。第二个易错点是柯西不等式写错方向，把 $\leq$ 写成 $\geq$；柯西不等式永远是"内积的平方不超过平方之积"。第三个易错点是取 $g(x)=1$ 时忘记 $\int_0^1 g^2\,dx=1$，误以为这一项是 $0$。第四个易错点是没有检查 $f$、$g$ 在区间上连续就直接套用。
+@@TIPS
+以后看到"要证明的不等式里出现某个积分的平方"，先想办法把这个积分看成一个内积 $\int f\cdot g$，再套柯西积分不等式；本题的 $g(x)=1$ 是最常用的取法，遇到 $\left(\int_a^b f\right)^2$ 时优先试它。
+@@SUMMARY
+看到要证 $\left(\int_a^b f\,dx\right)^2\leq\cdots$ → 取 $g(x)=1$ → 套柯西积分不等式。
+
+@@PROBLEM id=7.3-4 type=变式 star=★★★ time=8分钟 imp=★★★★ kp=定积分/积分中值定理
+@@STEM
+设 $n$ 为正整数，记 $I_n=\int_0^1\frac{x^n}{1+x}\,dx$。证明存在 $\xi_n\in[0,1]$，使 $I_n=\frac{\xi_n^n}{1+\xi_n}$，并求 $\lim_{n\to\infty}nI_n$。（专项训练原创题）
+@@POINT
+积分中值定理把积分转化为函数值与区间长度之积，再配合数列极限的估计。
+@@IDENTIFY
+看到题目明确要求"证明存在 $\xi$ 使积分等于某个函数值"，属于直接考查积分中值定理的题型 → 先写出 $f(\xi)(b-a)$ 的形式，再把 $\xi$ 的范围转化成对 $nI_n$ 的上界下界，最后用夹逼准则求极限。
+@@FORMULAS
+1. 积分中值定理：若 $f$ 在 $[a,b]$ 上连续，则存在 $\xi\in[a,b]$，使 $\int_a^b f(x)\,dx=f(\xi)(b-a)$
+2. 数列极限：$\lim_{n\to\infty}\frac{n}{n+1}=1$
+3. 幂函数积分公式：$\int_0^1 x^n\,dx=\frac{1}{n+1}\quad(n\geq 0)$
+@@IDEA
+题目前半问是"课本动作"：被积函数 $\frac{x^n}{1+x}$ 在 $[0,1]$ 上连续，区间长度是 $1$，所以积分等于 $\frac{\xi_n^n}{1+\xi_n}\times 1$。后半问要把 $nI_n$ 的极限求出来，注意积分中值定理给不出 $\xi_n$ 的精确位置，所以不能直接对 $\frac{\xi_n^n}{1+\xi_n}$ 求极限，而要绕开 $\xi_n$，回到积分本身去放缩：用 $\frac{1}{1+x}\leq 1$ 得 $I_n\leq\int_0^1x^n\,dx=\frac{1}{n+1}$，用 $\frac{1}{1+x}\geq\frac12$ 得 $I_n\geq\frac12\int_0^1x^n\,dx=\frac{1}{2(n+1)}$。把两个界同时乘以 $n$，得到 $\frac{n}{2(n+1)}\leq nI_n\leq\frac{n}{n+1}$，两端分别趋于 $\frac12$ 与 $1$，并不相等，所以这条常数放缩只能说明 $nI_n$ 落在 $\left[\frac12,1\right]$ 内，定不出极限；要得到真正的极限，还要把 $\frac{1}{1+x}$ 在 $[0,1]$ 上分段作更精细的放缩（即下面解答的第四步），结论是 $nI_n\to\frac12$。
+@@SOLUTION
+第一步，验证积分中值定理的条件。被积函数 $f(x)=\frac{x^n}{1+x}$ 在 $[0,1]$ 上连续：分子 $x^n$ 是多项式当然连续，分母 $1+x$ 在 $[0,1]$ 上满足 $1+x\geq 1>0$，不会等于零，所以 $f$ 在 $[0,1]$ 上连续（分母不为零的商函数连续）。因此由积分中值定理，存在 $\xi_n\in[0,1]$，使得
+$$I_n=\int_0^1\frac{x^n}{1+x}\,dx=f(\xi_n)\cdot(1-0)=\frac{\xi_n^n}{1+\xi_n}$$
+第二步，估计 $I_n$。对任意 $x\in[0,1]$，分母满足 $1\leq 1+x\leq 2$，取倒数得
+$$\frac12\leq\frac{1}{1+x}\leq 1$$
+又因为 $x\in[0,1]$ 时 $x^n\geq 0$，两边同乘 $x^n$ 得
+$$\frac{1}{2}x^n\leq\frac{x^n}{1+x}\leq x^n$$
+在 $[0,1]$ 上对三项分别积分，由积分的保序性得
+$$\frac12\int_0^1 x^n\,dx\leq I_n\leq\int_0^1 x^n\,dx$$
+其中
+$$\int_0^1 x^n\,dx=\left[\frac{x^{n+1}}{n+1}\right]_0^1=\frac{1}{n+1}-0=\frac{1}{n+1}$$
+代入得
+$$\frac{1}{2(n+1)}\leq I_n\leq\frac{1}{n+1}$$
+第三步，先把 $nI_n$ 化成一个便于处理的形式。由分解式
+$$\frac{x^n}{1+x}=\frac{x^n(1+x)-x^{n+1}}{1+x}=x^n-\frac{x^{n+1}}{1+x}$$
+（可以乘回去核对：$x^n-\frac{x^{n+1}}{1+x}=\frac{x^n(1+x)-x^{n+1}}{1+x}=\frac{x^n}{1+x}$），在 $[0,1]$ 上积分，由积分的线性性质得
+$$I_n=\int_0^1 x^n\,dx-\int_0^1\frac{x^{n+1}}{1+x}\,dx$$
+第一个积分用幂函数积分公式算出 $\int_0^1x^n\,dx=\frac{1}{n+1}$，第二个积分按定义就是 $I_{n+1}$，所以
+$$I_n=\frac{1}{n+1}-I_{n+1}$$
+两边同乘正数 $n$：
+$$nI_n=\frac{n}{n+1}-nI_{n+1}$$
+第四步，算 $\lim_{n\to\infty}nI_{n+1}$。直接把 $nI_{n+1}$ 写开：
+$$nI_{n+1}=n\int_0^1\frac{x^{n+1}}{1+x}\,dx$$
+在 $[0,1]$ 上被积函数 $\frac{x^{n+1}}{1+x}$ 满足
+$$\frac{x^{n+1}}{2}\leq\frac{x^{n+1}}{1+x}\leq x^{n+1}$$
+因为 $1\leq 1+x\leq 2$ 且 $x^{n+1}\geq 0$（与第一步同样的道理）。对三项积分得
+$$\frac{1}{2(n+2)}\leq I_{n+1}\leq\frac{1}{n+2}$$
+同乘 $n$ 得
+$$\frac{n}{2(n+2)}\leq nI_{n+1}\leq\frac{n}{n+2}$$
+这个估计给出的上下界极限分别是 $\frac12$ 与 $1$，还不相等，所以不能直接夹逼。
+要得到精确值，需要对 $\frac{1}{1+x}$ 在 $[0,1]$ 上作精细一点的估计。把区间分成两部分：靠近 $0$ 的那部分上 $\frac{1}{1+x}$ 接近 $1$，靠近 $1$ 的那部分上 $\frac{1}{1+x}$ 接近 $\frac12$，而 $x^{n+1}$ 的"重量"恰好集中在 $x=1$ 附近，所以 $I_{n+1}$ 应是 $\frac{1}{2n}$ 量级。取 $0<\delta<1$，在 $[0,1-\delta]$ 上 $\frac{1}{1+x}\leq 1$，在 $[1-\delta,1]$ 上 $\frac{1}{1+x}\leq\frac{1}{2-\delta}$，由积分的可加性
+$$I_{n+1}\leq\int_0^{1-\delta}x^{n+1}dx+\frac{1}{2-\delta}\int_{1-\delta}^1x^{n+1}dx=\frac{(1-\delta)^{n+2}}{n+2}+\frac{1}{2-\delta}\cdot\frac{1-(1-\delta)^{n+2}}{n+2}$$
+两边乘以 $n$，并注意 $0<1-\delta<1$ 时 $n(1-\delta)^{n+2}\to 0$（指数式衰减比 $n$ 的增长快得多），得
+$$\limsup_{n\to\infty}nI_{n+1}\leq\frac{1}{2-\delta}$$
+再让 $\delta\to 0^+$，右端趋于 $\frac12$，所以 $\limsup_{n\to\infty}nI_{n+1}\leq\frac12$。同样分段取下界：在 $[0,1-\delta]$ 上 $\frac{1}{1+x}\geq\frac{1}{2-\delta}$，在 $[1-\delta,1]$ 上 $\frac{1}{1+x}\geq\frac12$，得
+$$I_{n+1}\geq\frac{1}{2-\delta}\cdot\frac{(1-\delta)^{n+2}}{n+2}+\frac12\cdot\frac{1-(1-\delta)^{n+2}}{n+2}$$
+乘以 $n$ 并令 $n\to\infty$，得 $\liminf_{n\to\infty}nI_{n+1}\geq\frac12$。上下界相同，故
+$$\lim_{n\to\infty}nI_{n+1}=\frac12$$
+第五步，求 $nI_n$ 的极限。由第三步的关系 $nI_n=\frac{n}{n+1}-nI_{n+1}$，而
+$$\lim_{n\to\infty}\frac{n}{n+1}=\lim_{n\to\infty}\frac{1}{1+\frac1n}=\frac{1}{1+0}=1,\qquad\lim_{n\to\infty}nI_{n+1}=\frac12$$
+所以
+$$\lim_{n\to\infty}nI_n=1-\frac12=\frac12$$
+第六步，验算。取 $n=1$：$I_1=\int_0^1\frac{x}{1+x}dx=\left[x-\ln(1+x)\right]_0^1=\left(1-\ln 2\right)-0=1-\ln 2\approx 0.30685$，于是 $1\cdot I_1\approx 0.3069$，与极限值 $\frac12=0.5$ 还差得远，符合"随 $n$ 增大越来越接近 $\frac12$"的趋势。取 $n=100$ 作更细的核对：把第二步的界用到 $n=101$（此时 $n+1=102$），得 $\frac{1}{2\cdot102}\leq I_{101}\leq\frac{1}{102}$，即 $100I_{101}\in\left[\frac{100}{204},\frac{100}{102}\right]=[0.4902,0.9804]$，于是
+$$100I_{100}=\frac{100}{101}-100I_{101}\leq\frac{100}{101}-\frac{100}{204}=0.9901-0.4902=0.4999<0.5$$
+再由更精细的分段放缩（第四步）知 $100I_{101}$ 略大于它的下界 $0.4902$，因此 $100I_{100}$ 落在 $(0.4902,0.5)$ 内，即从下方接近 $\frac12$，与极限 $\frac12$ 相符。
+@@ANSWER
+存在 $\xi_n\in[0,1]$ 使 $I_n=\frac{\xi_n^n}{1+\xi_n}$；$\lim_{n\to\infty}nI_n=\frac12$
+@@PITFALL
+第一个易错点是把积分中值定理当成"能求出 $\xi_n$"的工具：定理只保证 $\xi_n$ 存在，$\xi_n$ 随 $n$ 变化且位置未知，因此不能对 $\frac{\xi_n^n}{1+\xi_n}$ 直接取极限。第二个易错点是用第一条放缩 $\frac{1}{2(n+1)}\leq I_n\leq\frac{1}{n+1}$ 去求 $nI_n$ 的极限：乘 $n$ 后两端变成 $\frac{n}{2(n+1)}\to\frac12$ 与 $\frac{n}{n+1}\to 1$，两个极限不相等，夹逼准则不成立，此时既不能写 $nI_n\to\frac12$ 也不能写 $nI_n\to 1$。第三个易错点是在分解 $\frac{x^n}{1+x}=x^n-\frac{x^{n+1}}{1+x}$ 时把指数写错：分子是 $x^n(1+x)-x^{n+1}=x^n+x^{n+1}-x^{n+1}=x^n$，可以乘回去核对。第四个易错点是在分段放缩后忘记让 $\delta\to 0^+$：得到 $\limsup nI_{n+1}\leq\frac{1}{2-\delta}$ 之后必须再令 $\delta\to 0^+$ 才能得到 $\frac12$。
+@@TIPS
+以后看到"证明存在 $\xi$ 使积分等于 $f(\xi)(b-a)$"就直接套积分中值定理写出结论；若题目接着要求 $n$ 倍积分的极限，就要记住两步：① 用分解 $\frac{1}{1+x}=1-\frac{x}{1+x}$ 一类的恒等式把积分化成 $\frac{1}{n+1}$ 减去一个小量；② 对那个小量总是用换元 $u=x^{m}$ 或分段放缩（把 $x$ 靠近端点的一段单独处理）来定出它的精确量级。
+@@SUMMARY
+看到"存在 $\xi$ 使积分等于 $f(\xi)(b-a)$" → 直接套积分中值定理 → 求 $n$ 倍积分的极限时用 $\frac{1}{1+x}=1-\frac{x}{1+x}$ 分解 + 分段放缩。
+
+@@PROBLEM id=7.3-5 type=基础训练 star=★★ time=6分钟 imp=★★★★ kp=定积分/积分不等式
+@@STEM
+估计积分 $\int_0^1\frac{x}{1+x^2}\,dx$ 的值，证明它满足 $\frac14\leq\int_0^1\frac{x}{1+x^2}\,dx\leq\frac12$。（专项训练原创题）
+@@POINT
+用被积函数在区间上的上下界对定积分作估值。
+@@IDENTIFY
+看到题目给出"估计积分值"或"证明积分落在某两个数之间"，属于定积分估值题型 → 在积分区间上把被积函数夹在两个常数之间，再对常数分别积分（常数乘区间长度）。本题的被积函数是 $\frac{x}{1+x^2}$，分母 $1+x^2$ 在 $[0,1]$ 上的取值范围是 $[1,2]$，据此得到 $\frac{1}{1+x^2}$ 的取值在 $[\frac12,1]$ 之间。
+@@FORMULAS
+1. 积分的保序性：若在 $[a,b]$ 上 $f(x)\leq g(x)$，则 $\int_a^b f(x)\,dx\leq\int_a^b g(x)\,dx$
+2. 常数函数的积分：$\int_a^b c\,dx=c(b-a)$
+3. 幂函数积分公式：$\int_0^1 x\,dx=\frac12$
+4. 区间 $[0,1]$ 上的取值：$1\leq 1+x^2\leq 2$
+@@IDEA
+估值题的套路只有一条：在积分区间上把被积函数放大成一个常数、缩小成另一个常数，然后利用"常数积分等于常数乘区间长度"。本题中 $x\in[0,1]$ 时 $1\leq 1+x^2\leq 2$，取倒数得 $\frac12\leq\frac{1}{1+x^2}\leq 1$；又 $x\geq 0$，乘上 $x$ 后不等号方向不变，于是 $\frac{x}{2}\leq\frac{x}{1+x^2}\leq x$。对三项在 $[0,1]$ 上积分，左边得 $\frac12\times\frac12=\frac14$，右边得 $\frac12$，结论就出来了。这个做法与本题被积函数的原函数是 $\frac12\ln(1+x^2)$ 无关，所以即使不会算原函数也能做出来。
+@@SOLUTION
+第一步，先确定分母的取值范围。当 $0\leq x\leq 1$ 时，$0\leq x^2\leq 1$，所以
+$$1\leq 1+x^2\leq 2$$
+三个数都是正数，取倒数后不等号方向反转：
+$$\frac{1}{2}\leq\frac{1}{1+x^2}\leq 1$$
+第二步，乘以 $x$。当 $0\leq x\leq 1$ 时 $x\geq 0$，用一个非负数去乘不等式，不等号方向不变：
+$$\frac{x}{2}\leq\frac{x}{1+x^2}\leq x$$
+第三步，在 $[0,1]$ 上对三项分别积分。由积分的保序性（被积函数大，积分就大）：
+$$\int_0^1\frac{x}{2}\,dx\leq\int_0^1\frac{x}{1+x^2}\,dx\leq\int_0^1 x\,dx$$
+第四步，算出左右两个积分。左边被积函数是常数 $\frac12$ 乘以 $x$，常数可以提到积分号外：
+$$\int_0^1\frac{x}{2}\,dx=\frac12\int_0^1 x\,dx=\frac12\cdot\left[\frac{x^2}{2}\right]_0^1=\frac12\cdot\left(\frac12-0\right)=\frac14$$
+右边：
+$$\int_0^1 x\,dx=\left[\frac{x^2}{2}\right]_0^1=\frac12-0=\frac12$$
+代入第三步的不等式，得到
+$$\frac14\leq\int_0^1\frac{x}{1+x^2}\,dx\leq\frac12$$
+第五步，验算。这个积分其实能精确算出：因为 $\frac{x}{1+x^2}$ 的分子 $x$ 正好是分母 $1+x^2$ 的导数 $2x$ 的一半，所以
+$$\int_0^1\frac{x}{1+x^2}\,dx=\frac12\int_0^1\frac{2x}{1+x^2}\,dx=\frac12\left[\ln(1+x^2)\right]_0^1=\frac12\left(\ln 2-\ln 1\right)=\frac{\ln 2}{2}$$
+用 $\ln 2\approx 0.6931$ 得精确值 $\approx 0.3466$，而 $\frac14=0.25$，$\frac12=0.5$，确实有 $0.25\leq 0.3466\leq 0.5$，估值正确。
+@@ANSWER
+$\frac14\leq\int_0^1\frac{x}{1+x^2}\,dx\leq\frac12$（精确值为 $\frac{\ln 2}{2}\approx 0.3466$）
+@@PITFALL
+第一个易错点是取倒数时忘记翻转不等号：由 $1\leq 1+x^2\leq 2$ 必须得到 $\frac12\leq\frac{1}{1+x^2}\leq 1$，如果把两端写成 $1\leq\frac{1}{1+x^2}\leq 2$ 就全错了。第二个易错点是 $\frac{x}{2}$ 的积分算成 $\frac12$：常数 $\frac12$ 只是系数，还要乘上 $\int_0^1 x\,dx=\frac12$，结果是 $\frac14$。第三个易错点是忘记 $x\geq 0$ 这个条件就直接乘以 $x$；如果积分区间换成 $[-1,0]$，乘 $x$ 时不等号要反向。
+@@TIPS
+以后看到"证明某积分落在两个数之间"或"估计积分值"，固定三步：① 在积分区间上把被积函数夹成两个常数（或两条简单函数）；② 对不等式两边积分；③ 用"常数积分 $=$ 常数 $\times$ 区间长度"算出两端。选常数时优先用分母的取值范围。
+@@SUMMARY
+看到估计积分值 → 在区间上把被积函数夹在两个常数之间 → 两边分别积分。
+
+@@PROBLEM id=7.3-6 type=提高训练 star=★★★ time=10分钟 imp=★★★★ kp=定积分/积分不等式
+@@STEM
+证明不等式 $\frac{1}{2(n+1)}\leq\int_0^1\frac{x^n}{1+x}\,dx\leq\frac{1}{n+1}$，并由此求 $\lim_{n\to\infty}\int_0^1\frac{x^n}{1+x}\,dx$ 与 $\lim_{n\to\infty}n\int_0^1\frac{x^n}{1+x}\,dx$ 这两个极限分别落在什么范围内。（专项训练原创题）
+@@POINT
+用常数放缩法与夹逼准则处理含参数 $n$ 的积分，并区分"积分本身的量级"与"乘以 $n$ 后的量级"。
+@@IDENTIFY
+看到被积函数是 $\frac{x^n}{1+x}$、分母的取值范围是一个固定区间 $[1,2]$、题目要求给出上下界并讨论 $n$ 倍积分的量级，属于"含参数积分的一致放缩"题型 → 想到用 $\frac{x^n}{1+x}=x^n-\frac{x^{n+1}}{1+x}$ 作分解，再用 $\frac{1}{1+x}$ 的常数界放缩；讨论 $n$ 倍积分时要注意上下界乘 $n$ 后极限可能不同，不能说极限被夹住。
+@@FORMULAS
+1. 积分的保序性：若在 $[a,b]$ 上 $f(x)\leq g(x)$，则 $\int_a^b f(x)\,dx\leq\int_a^b g(x)\,dx$
+2. 幂函数积分公式：$\int_0^1 x^n\,dx=\frac{1}{n+1}$
+3. 积分可加性：$\int_0^1 f(x)\,dx=\int_0^{\delta}f(x)\,dx+\int_{\delta}^1 f(x)\,dx$
+4. 数列极限：$\lim_{n\to\infty}\frac{1}{n+1}=0$，$\lim_{n\to\infty}\frac{n}{n+1}=1$
+@@IDEA
+第一问是纯放缩：由 $\frac12\leq\frac{1}{1+x}\leq 1$ 与 $x^n\geq 0$ 得 $\frac{x^n}{2}\leq\frac{x^n}{1+x}\leq x^n$，积分后用幂函数积分公式即得。第二问要小心：把上下界都乘以 $n$ 得 $\frac{n}{2(n+1)}\leq nI_n\leq\frac{n}{n+1}$，两端极限分别是 $\frac12$ 与 $1$，不相等，所以夹逼准则失效，只能得出"$nI_n$ 必落在 $[\frac12,1]$ 之内"这一结论，不能得出 $nI_n$ 的极限。为了说明为什么极限确实无法由这条放缩确定，把积分拆成两段：$x$ 靠近 $0$ 的那一段很小时 $\frac{1}{1+x}$ 接近 $1$，$x$ 靠近 $1$ 的那一段上 $\frac{1}{1+x}$ 接近 $\frac12$，而 $x^n$ 的"重量"随 $n$ 增大越来越集中在 $x=1$ 附近，所以真实的 $nI_n$ 会跑到 $\frac12$ 一侧，这也说明常数界的下界不是最优的。
+@@SOLUTION
+第一步，证明第一问。当 $0\leq x\leq 1$ 时，$1\leq 1+x\leq 2$，取倒数得
+$$\frac12\leq\frac{1}{1+x}\leq 1$$
+又因为 $x\in[0,1]$ 时 $x^n\geq 0$，两边同乘 $x^n$ 得
+$$\frac{1}{2}x^n\leq\frac{x^n}{1+x}\leq x^n$$
+在 $[0,1]$ 上积分，由积分的保序性得
+$$\frac12\int_0^1 x^n\,dx\leq\int_0^1\frac{x^n}{1+x}\,dx\leq\int_0^1 x^n\,dx$$
+算出幂函数的积分：
+$$\int_0^1 x^n\,dx=\left[\frac{x^{n+1}}{n+1}\right]_0^1=\frac{1}{n+1}-0=\frac{1}{n+1}$$
+代入得
+$$\frac{1}{2(n+1)}\leq\int_0^1\frac{x^n}{1+x}\,dx\leq\frac{1}{n+1}$$
+这就是第一问要证的结论。
+第二步，求第一个极限。对上式左右两端取 $n\to\infty$：
+$$\lim_{n\to\infty}\frac{1}{2(n+1)}=0,\qquad \lim_{n\to\infty}\frac{1}{n+1}=0$$
+两端极限相等，由夹逼准则得
+$$\lim_{n\to\infty}\int_0^1\frac{x^n}{1+x}\,dx=0$$
+这与"被积函数在 $x<1$ 时 $\to 0$、在 $x=1$ 处取有限值 $\frac12$"的直观一致。
+第三步，讨论第二个极限。记 $I_n=\int_0^1\frac{x^n}{1+x}\,dx$，把第一问的界两边同乘正数 $n$：
+$$\frac{n}{2(n+1)}\leq nI_n\leq\frac{n}{n+1}$$
+两端分别求极限：
+$$\lim_{n\to\infty}\frac{n}{2(n+1)}=\lim_{n\to\infty}\frac{1}{2}\cdot\frac{n}{n+1}=\frac12\cdot 1=\frac12$$
+$$\lim_{n\to\infty}\frac{n}{n+1}=\lim_{n\to\infty}\frac{1}{1+\frac1n}=1$$
+两个极限不相等，因此夹逼准则在这里不适用，不能写出"$nI_n\to$ 某个值"。只能得到更弱的结论：
+$$\frac12\leq\liminf_{n\to\infty}nI_n\leq\limsup_{n\to\infty}nI_n\leq 1$$
+也就是 $nI_n$ 始终被夹在 $\frac12$ 与 $1$ 之间（对每个 $n$ 成立），所以若 $nI_n$ 的极限存在，它只能落在闭区间 $\left[\frac12,1\right]$ 内。
+第四步，说明真实极限落在这个区间的哪一端。把被积函数在 $x=1$ 附近的作用放大来看：令 $t=1-x$，则 $x=1-t$，$dx=-dt$，上下限互换后
+$$I_n=\int_0^1\frac{(1-t)^n}{2-t}\,dt$$
+在 $[0,1]$ 上 $2-t$ 满足 $1\leq 2-t\leq 2$，所以 $\frac12\leq\frac{1}{2-t}\leq 1$，于是
+$$\frac12\int_0^1(1-t)^n\,dt\leq I_n\leq\int_0^1(1-t)^n\,dt$$
+其中
+$$\int_0^1(1-t)^n\,dt=\left[-\frac{(1-t)^{n+1}}{n+1}\right]_0^1=0+\frac{1}{n+1}=\frac{1}{n+1}$$
+这仍是同一个界，可见用常数夹 $\frac{1}{2-t}$ 无法把上下端拉近。改用"分段放缩"：对任意小的正数 $\delta$（取 $0<\delta<1$），在 $[0,1-\delta]$ 上 $\frac{1}{1+x}\leq 1$，在 $[1-\delta,1]$ 上 $\frac{1}{1+x}\leq\frac{1}{2-\delta}$，由积分可加性
+$$I_n=\int_0^{1-\delta}\frac{x^n}{1+x}\,dx+\int_{1-\delta}^1\frac{x^n}{1+x}\,dx\leq\int_0^{1-\delta}x^n\,dx+\frac{1}{2-\delta}\int_{1-\delta}^1 x^n\,dx$$
+两个积分分别计算：
+$$\int_0^{1-\delta}x^n\,dx=\frac{(1-\delta)^{n+1}}{n+1},\qquad\int_{1-\delta}^1 x^n\,dx=\frac{1-(1-\delta)^{n+1}}{n+1}$$
+所以
+$$I_n\leq\frac{(1-\delta)^{n+1}}{n+1}+\frac{1}{2-\delta}\cdot\frac{1-(1-\delta)^{n+1}}{n+1}$$
+两边乘以 $n$ 并先让 $n\to\infty$：因为 $0<1-\delta<1$，有 $(1-\delta)^{n+1}\to 0$，且 $n\cdot\frac{(1-\delta)^{n+1}}{n+1}\to 0$，于是
+$$\limsup_{n\to\infty}nI_n\leq\frac{1}{2-\delta}$$
+再让 $\delta\to 0^+$，右端 $\frac{1}{2-\delta}\to\frac12$，所以
+$$\limsup_{n\to\infty}nI_n\leq\frac{1}{2}$$
+第五步，给出下界。同样分段，在 $[0,1-\delta]$ 上用 $\frac{1}{1+x}\geq\frac{1}{2-\delta}$，在 $[1-\delta,1]$ 上用 $\frac{1}{1+x}\geq\frac12$，得
+$$I_n\geq\frac{1}{2-\delta}\int_0^{1-\delta}x^n\,dx+\frac12\int_{1-\delta}^1 x^n\,dx=\frac{1}{2-\delta}\cdot\frac{(1-\delta)^{n+1}}{n+1}+\frac12\cdot\frac{1-(1-\delta)^{n+1}}{n+1}$$
+两边乘以 $n$ 并令 $n\to\infty$（同样有 $n(1-\delta)^{n+1}\to 0$），得
+$$\liminf_{n\to\infty}nI_n\geq\frac12$$
+结合第四步的上界 $\limsup_{n\to\infty}nI_n\leq\frac12$，得到 $\liminf$ 与 $\limsup$ 都等于 $\frac12$，因此 $nI_n$ 的极限存在且等于 $\frac12$。这就是"$n$ 倍积分的极限落在什么范围内"这一问的答案：它不在 $\left[\frac12,1\right]$ 内部自由取值，而是恰好等于左端点 $\frac12$。
+第六步，验算。把 $I_n$ 展开成幂级数也可以核对这个结果：当 $0\leq x\leq 1$ 时 $\frac{1}{1+x}=1-x+x^2-x^3+\cdots$，逐项积分得
+$$I_n=\sum_{k=0}^{\infty}\frac{(-1)^k}{n+k+1}=\frac{1}{n+1}-\frac{1}{n+2}+\frac{1}{n+3}-\cdots$$
+乘以 $n$ 并令 $n\to\infty$，每一项 $\frac{n}{n+k+1}\to 1$，交错级数的和为 $1-1+1-1+\cdots$ 的"平均"值 $\frac12$（这一说法只能作直观参考，严格结论以第五步的分段夹逼为准）。用数值核对：$n=100$ 时把交错级数相邻两项配对，得正项级数 $I_{100}=\sum_{j=0}^{\infty}\frac{1}{(101+2j)(102+2j)}$。由于 $\frac{1}{(102+2j)^2}\leq\frac{1}{(101+2j)(102+2j)}\leq\frac{1}{(101+2j)^2}$，而 $\sum_{j\geq 0}\frac{1}{(b+j)^2}$ 满足 $\frac{1}{b}\leq\sum_{j\geq 0}\frac{1}{(b+j)^2}\leq\frac{1}{b}+\frac{1}{b^2}$，取 $b=51$ 与 $b=50.5$ 分别代入两端，可得 $0.00490\leq I_{100}\leq 0.00505$，即 $I_{100}\approx 0.004975$，乘以 $100$ 得 $100I_{100}\approx 0.4975$：它小于 $\frac12$，但已经十分接近（如果把交错级数的前几项相加就当作总和，会得到约 $0.0098$，几乎高估一倍，这一点必须注意）；继续增大 $n$，$nI_n$ 单调上升趋向 $\frac12$，与结论一致。
+@@ANSWER
+$\frac{1}{2(n+1)}\leq\int_0^1\frac{x^n}{1+x}\,dx\leq\frac{1}{n+1}$；$\lim_{n\to\infty}\int_0^1\frac{x^n}{1+x}\,dx=0$；$\lim_{n\to\infty}n\int_0^1\frac{x^n}{1+x}\,dx=\frac12$
+@@PITFALL
+最大的易错点是把第一问的界直接搬去求 $n$ 倍积分的极限：$\frac{n}{2(n+1)}\leq nI_n\leq\frac{n}{n+1}$ 两端极限是 $\frac12$ 与 $1$，不相等，此时夹逼准则不成立，写"$nI_n\to\frac12$ 或 $\to 1$"都是没有根据的。第二个易错点是在分段放缩时把两段的界用反：靠近 $1$ 的那一段 $\frac{1}{1+x}$ 更接近 $\frac12$（是较小的界），靠近 $0$ 的那一段更接近 $1$。第三个易错点是忘记说明 $n(1-\delta)^{n+1}\to 0$，这是分段放缩能成功的关键，必须写清"因为 $0<1-\delta<1$，指数式衰减远快于 $n$ 的增长"。
+@@TIPS
+以后遇到"含参数积分的估值 + 求极限"这类两问组合题，第一问用常数夹被积函数，第二问先把界乘上参数看两端极限是否相等：相等才能夹逼，不等就要像本题一样分段放缩，或者先把积分算成递推式再取极限。
+@@SUMMARY
+看到 $n$ 倍含参数积分求极限 → 先乘 $n$ 看两端极限是否相等 → 不等则分段放缩（把 $x$ 靠近端点的部分单独处理）。
+
+@@SECTION 7.4 题型四 定积分与数列极限、积分递推
+
+@@METHOD
+这一类题记住四句话。① 看到 $n$ 项之和求 $n\to\infty$ 的极限，先判断它是不是"黎曼和"：把通项写成 $\frac{1}{n}$ 乘上一个只含 $\frac{i}{n}$ 的函数，即 $\sum_{i=1}^{n}f\left(\frac{i}{n}\right)\frac{1}{n}$，则极限就是 $\int_0^1 f(x)\,dx$；这一步的核心是把哪一项看成 $f\left(\frac{i}{n}\right)\cdot\frac{1}{n}$。② 判断诀窍是"分母里提取出 $n$"：把分母中的 $n$ 提到外面变成 $\frac1n$，剩下的部分里把 $i$ 换成 $x$，就得到被积函数 $f(x)$。③ 看到 $I_n=\int_0^{\frac{\pi}{2}}\sin^nx\,dx$ 这类带幂次的积分，用分部积分建立递推式 $I_n=\frac{n-1}{n}I_{n-2}$，然后分奇偶把递推式连乘到底，得到沃利斯公式。④ 递推题的标准写法是：先算两个初始值 $I_0$、$I_1$，再写出递推关系，最后按奇偶写出通项公式，并带回小 $n$ 验算。
+@@METHODEND
+
+@@PROBLEM id=7.4-1 type=母题 star=★★ time=8分钟 imp=★★★★★ kp=定积分/黎曼和
+@@STEM
+求极限 $\lim_{n\to\infty}\left(\frac{1}{n+1}+\frac{1}{n+2}+\cdots+\frac{1}{n+n}\right)$。（专项训练原创题）
+@@POINT
+把 $n$ 项和识别为黎曼和并化为定积分（定积分的定义）。
+@@IDENTIFY
+看到 $n\to\infty$ 且式子是 $n$ 项之和、每一项的分母里都有 $n$ 与 $i$（$i$ 从 $1$ 到 $n$）、并且求不出精确的和，属于"和式极限化定积分"题型 → 把通项整理成 $f\left(\frac{i}{n}\right)\cdot\frac{1}{n}$ 的形式，再用定积分定义计算。
+@@FORMULAS
+1. 定积分定义（黎曼和）：$\lim_{n\to\infty}\sum_{i=1}^{n}f\left(\frac{i}{n}\right)\frac{1}{n}=\int_0^1 f(x)\,dx$
+2. 对数函数的积分：$\int_0^1\frac{1}{1+x}\,dx=\left[\ln(1+x)\right]_0^1=\ln 2$
+3. 通分技巧：$\frac{1}{n+i}=\frac{1}{n}\cdot\frac{1}{1+\frac{i}{n}}$
+@@IDEA
+和式里的第 $i$ 项是 $\frac{1}{n+i}$。要化成黎曼和，关键是"把哪一项看成 $f\left(\frac{i}{n}\right)\cdot\frac{1}{n}$"：把分母 $n+i$ 提出一个公因子 $n$，写成 $n\left(1+\frac{i}{n}\right)$，于是
+$$\frac{1}{n+i}=\frac{1}{n}\cdot\frac{1}{1+\frac{i}{n}}$$
+这里 $\frac{1}{n}$ 就是黎曼和里的 $\Delta x=\frac{1}{n}$，剩下的 $\frac{1}{1+\frac{i}{n}}$ 正是把 $x$ 取成 $\frac{i}{n}$ 得到的函数值 $f\left(\frac{i}{n}\right)$，其中 $f(x)=\frac{1}{1+x}$。所以整个和式就是 $f$ 在 $[0,1]$ 上取等分点 $\frac{i}{n}$ 的黎曼和，极限等于 $\int_0^1\frac{1}{1+x}\,dx$。
+@@SOLUTION
+第一步，写出通项并提取 $\frac{1}{n}$。和式的第 $i$ 项（$i=1,2,\cdots,n$）是 $\frac{1}{n+i}$。把分母 $n+i$ 里的 $n$ 提出来：
+$$n+i=n\left(1+\frac{i}{n}\right)$$
+于是
+$$\frac{1}{n+i}=\frac{1}{n\left(1+\frac{i}{n}\right)}=\frac{1}{n}\cdot\frac{1}{1+\frac{i}{n}}$$
+第二步，把通项认成 $f\left(\frac{i}{n}\right)\cdot\frac{1}{n}$ 的形式。对照 $\frac{1}{n}\cdot\frac{1}{1+\frac{i}{n}}$ 与标准形式 $f\left(\frac{i}{n}\right)\cdot\frac{1}{n}$，可以看出
+$$\frac{1}{n}\text{ 就是 }\Delta x=\frac{1}{n},\qquad f\left(\frac{i}{n}\right)=\frac{1}{1+\frac{i}{n}}$$
+把 $\frac{i}{n}$ 换成 $x$，就得到被积函数
+$$f(x)=\frac{1}{1+x}$$
+第三步，写出黎曼和并取极限。整个和式可以写成
+$$\frac{1}{n+1}+\frac{1}{n+2}+\cdots+\frac{1}{n+n}=\sum_{i=1}^{n}\frac{1}{n}\cdot\frac{1}{1+\frac{i}{n}}=\sum_{i=1}^{n}f\left(\frac{i}{n}\right)\frac{1}{n}$$
+这正是函数 $f(x)=\frac{1}{1+x}$ 在区间 $[0,1]$ 上把 $[0,1]$ 分成 $n$ 等份（分点为 $0,\frac1n,\frac2n,\cdots,\frac nn=1$）、每份长度 $\frac1n$、取右端点函数值作和的黎曼和。因为 $f(x)=\frac{1}{1+x}$ 在 $[0,1]$ 上连续，所以这个黎曼和收敛于对应的定积分：
+$$\lim_{n\to\infty}\left(\frac{1}{n+1}+\frac{1}{n+2}+\cdots+\frac{1}{n+n}\right)=\int_0^1\frac{1}{1+x}\,dx$$
+第四步，计算定积分。$\frac{1}{1+x}$ 的一个原函数是 $\ln(1+x)$，因为 $\left(\ln(1+x)\right)'=\frac{1}{1+x}$（这是复合函数求导，内层 $1+x$ 的导数是 $1$）。代入上下限：
+$$\int_0^1\frac{1}{1+x}\,dx=\left[\ln(1+x)\right]_0^1=\ln(1+1)-\ln(1+0)=\ln 2-\ln 1=\ln 2-0=\ln 2$$
+所以
+$$\lim_{n\to\infty}\left(\frac{1}{n+1}+\frac{1}{n+2}+\cdots+\frac{1}{n+n}\right)=\ln 2$$
+第五步，验算。$\ln 2\approx 0.6931$。取 $n=10$，和式等于 $\frac{1}{11}+\frac{1}{12}+\cdots+\frac{1}{20}$，各项约为 $0.09091+0.08333+0.07692+0.07143+0.06667+0.06250+0.05882+0.05556+0.05263+0.05000=0.66877$，比 $\ln 2$ 略小，而且 $n$ 越大越接近 $\ln 2$（$n=100$ 时约为 $0.68817$），与结论一致。也要注意和式是从 $i=1$ 开始的，比积分少了 $x$ 接近 $0$ 那一小段，所以和式略小于积分值，这与数值结果相符。
+@@ANSWER
+$\ln 2$
+@@PITFALL
+第一个易错点是提取 $\frac{1}{n}$ 时写错：$\frac{1}{n+i}$ 不等于 $\frac1n\cdot\frac{1}{1+i}$，必须是 $\frac{1}{n}\cdot\frac{1}{1+\frac{i}{n}}$，那个 $\frac{i}{n}$ 的分母 $n$ 不能丢。第二个易错点是积分区间搞错：本题等分点是 $\frac{i}{n}$（$i$ 从 $1$ 到 $n$），所以积分区间是 $[0,1]$；如果是 $\sum_{i=1}^{n}f\left(\frac{i}{n}\right)\frac{2}{n}$ 这种，区间就变成 $[0,2]$，$dx$ 也要换成 $\frac2n$。第三个易错点是把 $\ln 2$ 算成 $\ln 1=0$，代入下限 $\ln(1+0)=\ln 1=0$ 这一项不能漏。第四个易错点是没有检查 $f$ 的连续性就直接用定义。
+@@TIPS
+以后看到 $n$ 项之和求极限，固定做"提取 $\frac1n$"这一步：把每一项分母里的 $n$ 提出来，写成 $\frac1n\times(\text{只含}\frac{i}{n}\text{的式子})$，再把 $\frac{i}{n}$ 换成 $x$ 得到被积函数。只要能成功提取出公共因子 $\frac1n$（或 $\frac{k}{n}$），就是黎曼和，极限就是 $\int_0^1 f(x)\,dx$。
+@@SUMMARY
+看到 $n$ 项和求极限 → 分母提出 $n$ 变成 $\frac1n$ → 识出 $f\left(\frac{i}{n}\right)$ → 化为 $\int_0^1 f(x)\,dx$。
+
+@@PROBLEM id=7.4-2 type=变式 star=★★ time=8分钟 imp=★★★★★ kp=定积分/黎曼和
+@@STEM
+求极限 $\lim_{n\to\infty}\left(\frac{n}{n^2+1^2}+\frac{n}{n^2+2^2}+\cdots+\frac{n}{n^2+n^2}\right)$。（根据 CMC 常见题型改编）
+@@POINT
+分母含 $n^2$ 与 $i^2$ 的 $n$ 项和化定积分。
+@@IDENTIFY
+看到 $n$ 项之和、每一项的形状是 $\frac{n}{n^2+i^2}$、分母里同时出现 $n^2$ 与 $i^2$，属于黎曼和题型的一种常见外形 → 先把分母提出 $n^2$，把通项整理成 $\frac{1}{n}\cdot\frac{1}{1+\left(\frac{i}{n}\right)^2}$，即 $f\left(\frac{i}{n}\right)\cdot\frac{1}{n}$ 的形式，其中 $f(x)=\frac{1}{1+x^2}$。
+@@FORMULAS
+1. 定积分定义（黎曼和）：$\lim_{n\to\infty}\sum_{i=1}^{n}f\left(\frac{i}{n}\right)\frac{1}{n}=\int_0^1 f(x)\,dx$
+2. 反正切函数的导数：$\left(\arctan x\right)'=\frac{1}{1+x^2}$
+3. 反正切函数的特殊值：$\arctan 1=\frac{\pi}{4}$，$\arctan 0=0$
+4. 通分技巧：$\frac{n}{n^2+i^2}=\frac{1}{n}\cdot\frac{1}{1+\left(\frac{i}{n}\right)^2}$
+@@IDEA
+本题通项的分子是 $n$（不是 $1$），分母是 $n^2+i^2$。要化成黎曼和，关键是"把哪一项看成 $f\left(\frac{i}{n}\right)\cdot\frac{1}{n}$"：先看通项 $\frac{n}{n^2+i^2}$。分母提取 $n^2$ 得 $n^2\left(1+\frac{i^2}{n^2}\right)=n^2\left(1+\left(\frac{i}{n}\right)^2\right)$，于是
+$$\frac{n}{n^2+i^2}=\frac{n}{n^2\left(1+\left(\frac{i}{n}\right)^2\right)}=\frac{1}{n}\cdot\frac{1}{1+\left(\frac{i}{n}\right)^2}$$
+分子上的那个 $n$ 正好与分母里的一个 $n$ 抵消，剩下的 $\frac1n$ 就是 $\Delta x$，而 $\frac{1}{1+\left(\frac{i}{n}\right)^2}$ 是 $f\left(\frac{i}{n}\right)$，$f(x)=\frac{1}{1+x^2}$。它的原函数是 $\arctan x$，所以极限是 $\arctan 1-\arctan 0=\frac{\pi}{4}$。
+@@SOLUTION
+第一步，整理通项。第 $i$ 项是 $\frac{n}{n^2+i^2}$（$i=1,2,\cdots,n$）。把分母 $n^2+i^2$ 中的 $n^2$ 提出来：
+$$n^2+i^2=n^2\left(1+\frac{i^2}{n^2}\right)=n^2\left(1+\left(\frac{i}{n}\right)^2\right)$$
+代入通项：
+$$\frac{n}{n^2+i^2}=\frac{n}{n^2\left(1+\left(\frac{i}{n}\right)^2\right)}=\frac{1}{n}\cdot\frac{1}{1+\left(\frac{i}{n}\right)^2}$$
+第二步，识别 $f\left(\frac{i}{n}\right)\cdot\frac{1}{n}$ 中的 $f$。把上式与标准形式 $f\left(\frac{i}{n}\right)\frac{1}{n}$ 对照：
+$$\frac{1}{n}\text{ 是 }\Delta x,\qquad f\left(\frac{i}{n}\right)=\frac{1}{1+\left(\frac{i}{n}\right)^2}$$
+把 $\frac{i}{n}$ 换成 $x$，得被积函数
+$$f(x)=\frac{1}{1+x^2}$$
+第三步，写出黎曼和并化为定积分。原和式等于
+$$\sum_{i=1}^{n}\frac{1}{n}\cdot\frac{1}{1+\left(\frac{i}{n}\right)^2}=\sum_{i=1}^{n}f\left(\frac{i}{n}\right)\frac{1}{n}$$
+这是 $f(x)=\frac{1}{1+x^2}$ 在 $[0,1]$ 上以 $\frac{i}{n}$ 为右端点、步长 $\frac1n$ 的黎曼和；$f$ 在 $[0,1]$ 上连续（分母 $1+x^2\geq 1>0$），所以
+$$\lim_{n\to\infty}\left(\frac{n}{n^2+1^2}+\frac{n}{n^2+2^2}+\cdots+\frac{n}{n^2+n^2}\right)=\int_0^1\frac{1}{1+x^2}\,dx$$
+第四步，计算定积分。因为 $\left(\arctan x\right)'=\frac{1}{1+x^2}$，所以 $\arctan x$ 是 $\frac{1}{1+x^2}$ 的一个原函数：
+$$\int_0^1\frac{1}{1+x^2}\,dx=\left[\arctan x\right]_0^1=\arctan 1-\arctan 0$$
+其中 $\arctan 1=\frac{\pi}{4}$（因为 $\tan\frac{\pi}{4}=1$ 且 $\frac{\pi}{4}$ 落在 $\arctan$ 的主值区间 $\left(-\frac{\pi}{2},\frac{\pi}{2}\right)$ 内），$\arctan 0=0$（因为 $\tan 0=0$）。因此
+$$\int_0^1\frac{1}{1+x^2}\,dx=\frac{\pi}{4}-0=\frac{\pi}{4}$$
+第五步，验算。$\frac{\pi}{4}\approx 0.7854$。取 $n=5$：各项为 $\frac{5}{25+1}=\frac{5}{26}\approx 0.19231$，$\frac{5}{29}\approx 0.17241$，$\frac{5}{34}\approx 0.14706$，$\frac{5}{41}\approx 0.12195$，$\frac{5}{50}=0.1$，和约为 $0.73373$，比 $0.7854$ 小；取 $n=20$ 时和会更接近 $0.7854$，这与结论一致（每一步的取值点偏小会使和略小于积分值）。
+@@ANSWER
+$\frac{\pi}{4}$
+@@PITFALL
+第一个易错点是把通项写成 $\frac{1}{n}\cdot\frac{1}{1+i^2}$：分母提取 $n^2$ 之后剩下的必须是 $1+\left(\frac{i}{n}\right)^2$，$i^2$ 要除以 $n^2$。第二个易错点是分子上的 $n$ 处理错，有人把 $\frac{n}{n^2+i^2}$ 看成 $\frac{1}{n+i^2}$，这完全改变了通项；正确的约分是分子分母同除以 $n$。第三个易错点是把原函数记成 $\ln(1+x^2)$，那是 $\frac{2x}{1+x^2}$ 的原函数，与本题无关。第四个易错点是 $\arctan 1$ 写成 $\frac{\pi}{2}$，要记住 $\tan\frac{\pi}{2}$ 不存在，出现 $\frac{\pi}{2}$ 一定是错的。
+@@TIPS
+以后看到分母是 $n^2+i^2$ 或 $n^2+ki^2$ 这一类"二次"结构，就提取 $n^2$，得到 $\frac{1}{1+\left(\frac{i}{n}\right)^2}$ 型被积函数，积分后出现 $\arctan$；看到分母是 $n+i$、$n+ki$ 这一类"一次"结构，就提取 $n$，得到 $\frac{1}{1+x}$ 型被积函数，积分后出现 $\ln$。
+@@SUMMARY
+看到通项是 $\frac{n}{n^2+i^2}$ → 分母提 $n^2$、约掉分子的 $n$ → 得到 $\frac{1}{n}\cdot\frac{1}{1+\left(\frac{i}{n}\right)^2}$ → 极限为 $\arctan 1=\frac{\pi}{4}$。
+
+@@PROBLEM id=7.4-3 type=变式 star=★★ time=6分钟 imp=★★★★ kp=定积分/黎曼和
+@@STEM
+求极限 $\lim_{n\to\infty}\left(\frac{1}{n^2}+\frac{2}{n^2}+\frac{3}{n^2}+\cdots+\frac{n}{n^2}\right)$。（专项训练原创题）
+@@POINT
+先求和再取极限，与化为黎曼和两条路走通并互相验证。
+@@IDENTIFY
+看到 $n$ 项之和、每一项的分母都是同一个 $n^2$、分子是 $1,2,\cdots,n$，属于"分母相同可直接求和的 $n$ 项和"题型 → 先用等差数列求和公式把和算出来再取极限；同时用黎曼和的定义核对结果，体会"能直接求和时不必化定积分"。
+@@FORMULAS
+1. 等差数列求和：$1+2+\cdots+n=\frac{n(n+1)}{2}$
+2. 定积分定义（黎曼和）：$\lim_{n\to\infty}\sum_{i=1}^{n}f\left(\frac{i}{n}\right)\frac{1}{n}=\int_0^1 f(x)\,dx$
+3. 幂函数积分公式：$\int_0^1 x\,dx=\frac12$
+@@IDEA
+本题和式的每一项分母都是 $n^2$，是同一个数，所以可以把它提到求和号外面，先算出 $1+2+\cdots+n$，再取极限，一步就得到答案。另一条路是把它看成黎曼和：关键识别步骤是把第 $i$ 项 $\frac{i}{n^2}$ 写成 $\frac{i}{n}\cdot\frac1n$，也就是
+$$\frac{i}{n^2}=\frac{1}{n}\cdot\frac{i}{n}=f\left(\frac{i}{n}\right)\cdot\frac{1}{n},\qquad f(x)=x$$
+于是极限等于 $\int_0^1x\,dx=\frac12$。两条路结果相同，说明识别是否正确。
+@@SOLUTION
+第一步，先看能不能直接求和。和式的第 $i$ 项是 $\frac{i}{n^2}$（$i=1,2,\cdots,n$），所有项的分母都是同一个 $n^2$，因此可以把 $\frac{1}{n^2}$ 提到求和号外面：
+$$\frac{1}{n^2}+\frac{2}{n^2}+\frac{3}{n^2}+\cdots+\frac{n}{n^2}=\frac{1}{n^2}\left(1+2+3+\cdots+n\right)$$
+第二步，用等差数列求和公式。首项 $1$、末项 $n$、项数 $n$，所以
+$$1+2+3+\cdots+n=\frac{n(n+1)}{2}$$
+代入得
+$$\frac{1}{n^2}\cdot\frac{n(n+1)}{2}=\frac{n(n+1)}{2n^2}=\frac{n+1}{2n}=\frac{1}{2}\left(1+\frac1n\right)$$
+第三步，取极限：
+$$\lim_{n\to\infty}\frac{1}{2}\left(1+\frac1n\right)=\frac12\left(1+0\right)=\frac12$$
+第四步，用黎曼和的定义核对。把第 $i$ 项改写成"$\frac{1}{n}$ 乘以只含 $\frac{i}{n}$ 的式子"：
+$$\frac{i}{n^2}=\frac{1}{n}\cdot\frac{i}{n}$$
+这里 $\frac{1}{n}$ 就是 $\Delta x=\frac1n$，而 $\frac{i}{n}$ 就是把 $x$ 取为 $\frac{i}{n}$ 得到的函数值 $f\left(\frac{i}{n}\right)$，其中 $f(x)=x$（把 $\frac{i}{n}$ 换成 $x$ 即得）。所以
+$$\lim_{n\to\infty}\left(\frac{1}{n^2}+\frac{2}{n^2}+\cdots+\frac{n}{n^2}\right)=\lim_{n\to\infty}\sum_{i=1}^{n}f\left(\frac{i}{n}\right)\frac{1}{n}=\int_0^1 x\,dx$$
+计算这个积分：
+$$\int_0^1 x\,dx=\left[\frac{x^2}{2}\right]_0^1=\frac12-0=\frac12$$
+两条路都得到 $\frac12$，互相验证通过。
+第五步，验算。取 $n=10$：和式等于 $\frac{1+2+\cdots+10}{100}=\frac{55}{100}=0.55$，与极限 $\frac12=0.5$ 相差 $0.05$；取 $n=100$：和式等于 $\frac{5050}{10000}=0.5050$，更接近 $0.5$，与结论一致。
+@@ANSWER
+$\frac12$
+@@PITFALL
+第一个易错点是拿到题就套定积分定义而不先看分母是否相同：本题分母都是 $n^2$，直接求和更快；但要注意这里的"相同"指的是分母整体相同，不能像 $\frac{1}{n+i}$ 那样直接求和。第二个易错点是等差数列求和公式记错，把 $\frac{n(n+1)}{2}$ 写成 $n(n+1)$ 或 $\frac{n(n-1)}{2}$。第三个易错点是在黎曼和核对时误以为 $f(x)=x$ 不成立，把第 $i$ 项写成 $\frac{1}{n}\cdot\frac{i}{n}$ 时多出一个 $\frac1n$：$\frac{i}{n^2}=\frac{i}{n}\cdot\frac1n$，这里的 $\frac1n$ 就是 $\Delta x$，不能再乘一次。
+@@TIPS
+以后遇到 $n$ 项和的极限，先花 5 秒判断分母是否完全相同：相同就用求和公式（等差、等比）直接算；不相同（分母含 $i$）才走黎曼和。走黎曼和时永远做"提取 $\frac1n$"这一步。
+@@SUMMARY
+看到形如 $\sum\frac{i}{n^2}$ 且分母相同 → 先提 $\frac{1}{n^2}$ 用等差数列求和 → 再取极限（也等于 $\int_0^1x\,dx$）。
+
+@@PROBLEM id=7.4-4 type=变式 star=★★ time=10分钟 imp=★★★★★ kp=定积分/递推公式
+@@STEM
+设 $J_n=\int_0^{\frac{\pi}{2}}\cos^nx\,dx$（$n$ 为非负整数）。求 $J_0$、$J_1$，并证明 $J_n=\frac{n-1}{n}J_{n-2}$（$n\geq 2$），再用它算出 $J_2$ 与 $J_3$。（专项训练原创题）
+@@POINT
+用分部积分建立余弦幂积分的递推公式，并由初始值递推到底。
+@@IDENTIFY
+看到积分是 $\int_0^{\frac{\pi}{2}}\cos^nx\,dx$、指标 $n$ 出现在幂次上、题目要求"求递推公式"，属于"积分的递推公式"题型 → 想到用分部积分把 $\cos^nx$ 拆成 $\cos^{n-1}x\cdot\cos x$，把 $\cos^{n-1}x$ 取作 $u$、$\cos x\,dx$ 取作 $dv$，得到 $I_n$ 与 $I_{n-2}$ 的关系。
+@@FORMULAS
+1. 分部积分公式：$\int_a^b u\,dv=\left[uv\right]_a^b-\int_a^b v\,du$
+2. 同角三角函数平方关系：$\sin^2x+\cos^2x=1$
+3. 基本积分：$\int_0^{\frac{\pi}{2}}dx=\frac{\pi}{2}$，$\int_0^{\frac{\pi}{2}}\cos x\,dx=1$
+4. 特殊值：$\sin 0=0$，$\sin\frac{\pi}{2}=1$，$\cos 0=1$，$\cos\frac{\pi}{2}=0$
+@@IDEA
+递推的关键是分部积分。把 $\cos^nx$ 写成 $\cos^{n-1}x\cdot\cos x$，取 $u=\cos^{n-1}x$、$dv=\cos x\,dx$，则 $v=\sin x$、$du=(n-1)\cos^{n-2}x\cdot(-\sin x)\,dx$（复合函数求导：外层幂函数求导得 $(n-1)\cos^{n-2}x$，内层 $\cos x$ 求导得 $-\sin x$）。分部积分后，边界项 $uv$ 里含 $\sin x$ 与 $\cos^{n-1}x$，在 $0$ 与 $\frac{\pi}{2}$ 处都等于 $0$；剩下的积分用 $\sin^2x=1-\cos^2x$ 拆开，就得到含 $J_n$ 与 $J_{n-2}$ 的方程，解出 $J_n$ 即得递推式。
+@@SOLUTION
+第一步，算两个初始值。
+$$J_0=\int_0^{\frac{\pi}{2}}\cos^0x\,dx=\int_0^{\frac{\pi}{2}}1\,dx=\left[x\right]_0^{\frac{\pi}{2}}=\frac{\pi}{2}-0=\frac{\pi}{2}$$
+$$J_1=\int_0^{\frac{\pi}{2}}\cos x\,dx=\left[\sin x\right]_0^{\frac{\pi}{2}}=\sin\frac{\pi}{2}-\sin 0=1-0=1$$
+第二步，推导递推公式。当 $n\geq 2$ 时，把被积函数写成两部分之积：
+$$\cos^nx=\cos^{n-1}x\cdot\cos x$$
+在 $\int_0^{\frac{\pi}{2}}\cos^nx\,dx$ 上用分部积分，取
+$$u=\cos^{n-1}x,\qquad dv=\cos x\,dx$$
+则
+$$du=(n-1)\cos^{n-2}x\cdot(-\sin x)\,dx=-(n-1)\cos^{n-2}x\sin x\,dx,\qquad v=\sin x$$
+代入分部积分公式 $\int_0^{\frac{\pi}{2}}u\,dv=\left[uv\right]_0^{\frac{\pi}{2}}-\int_0^{\frac{\pi}{2}}v\,du$：
+$$J_n=\left[\cos^{n-1}x\sin x\right]_0^{\frac{\pi}{2}}-\int_0^{\frac{\pi}{2}}\sin x\cdot\left(-(n-1)\cos^{n-2}x\sin x\right)dx$$
+第三步，算边界项。把上下限代进 $\cos^{n-1}x\sin x$：
+- 上限 $x=\frac{\pi}{2}$：$\cos\frac{\pi}{2}=0$，所以 $\cos^{n-1}\frac{\pi}{2}\sin\frac{\pi}{2}=0\cdot 1=0$；
+- 下限 $x=0$：$\sin 0=0$，所以 $\cos^{n-1}0\cdot\sin 0=1\cdot 0=0$。
+因此
+$$\left[\cos^{n-1}x\sin x\right]_0^{\frac{\pi}{2}}=0-0=0$$
+第四步，化简剩下的积分。把负号提到积分号外：
+$$J_n=0+(n-1)\int_0^{\frac{\pi}{2}}\sin^2x\cos^{n-2}x\,dx$$
+这里用同角三角函数平方关系 $\sin^2x=1-\cos^2x$ 替换：
+$$J_n=(n-1)\int_0^{\frac{\pi}{2}}\left(1-\cos^2x\right)\cos^{n-2}x\,dx=(n-1)\int_0^{\frac{\pi}{2}}\left(\cos^{n-2}x-\cos^nx\right)dx$$
+把积分拆成两项（积分的线性性质）：
+$$J_n=(n-1)\int_0^{\frac{\pi}{2}}\cos^{n-2}x\,dx-(n-1)\int_0^{\frac{\pi}{2}}\cos^nx\,dx=(n-1)J_{n-2}-(n-1)J_n$$
+第五步，解出 $J_n$。把含 $J_n$ 的项移到左边：
+$$J_n+(n-1)J_n=(n-1)J_{n-2}$$
+左边合并同类项：$1+(n-1)=n$，所以
+$$nJ_n=(n-1)J_{n-2}$$
+两边同除以正数 $n$（$n\geq 2$，$n\neq 0$）：
+$$J_n=\frac{n-1}{n}J_{n-2}\quad(n\geq 2)$$
+第六步，用递推公式算 $J_2$ 与 $J_3$。取 $n=2$：
+$$J_2=\frac{2-1}{2}J_0=\frac12\cdot\frac{\pi}{2}=\frac{\pi}{4}$$
+取 $n=3$：
+$$J_3=\frac{3-1}{3}J_1=\frac23\cdot 1=\frac23$$
+第七步，验算。$J_2=\int_0^{\frac{\pi}{2}}\cos^2x\,dx$ 可以用倍角公式直接算：$\cos^2x=\frac{1+\cos 2x}{2}$，所以
+$$J_2=\int_0^{\frac{\pi}{2}}\frac{1+\cos 2x}{2}\,dx=\frac12\left[x+\frac{\sin 2x}{2}\right]_0^{\frac{\pi}{2}}=\frac12\left(\frac{\pi}{2}+0-0-0\right)=\frac{\pi}{4}$$
+与递推结果一致。$J_3=\int_0^{\frac{\pi}{2}}\cos^3x\,dx$ 可以换元 $u=\sin x$（$du=\cos x\,dx$）算：$\cos^3x\,dx=\cos^2x\cdot\cos x\,dx=(1-\sin^2x)\,d(\sin x)$，当 $x$ 从 $0$ 到 $\frac{\pi}{2}$ 时 $u$ 从 $0$ 到 $1$，所以
+$$J_3=\int_0^1\left(1-u^2\right)du=\left[u-\frac{u^3}{3}\right]_0^1=1-\frac13=\frac23$$
+与递推结果一致，两个答案都验算通过。
+@@ANSWER
+$J_0=\frac{\pi}{2}$，$J_1=1$，$J_n=\frac{n-1}{n}J_{n-2}$（$n\geq 2$），$J_2=\frac{\pi}{4}$，$J_3=\frac23$
+@@PITFALL
+第一个易错点是分部积分里 $u$ 与 $dv$ 取反：必须把 $\cos^{n-1}x$ 取作 $u$、把 $\cos x\,dx$ 取作 $dv$，如果反过来（取 $u=\cos x$），$v$ 里会出现 $\sin x$ 的幂，递推式推不出来。第二个易错点是 $du$ 里漏掉负号：$\left(\cos^{n-1}x\right)'=-(n-1)\cos^{n-2}x\sin x$，负号漏掉会让递推式变成 $J_n=-\frac{n-1}{n}J_{n-2}$，算出来是负数，明显错误。第三个易错点是边界项漏算：$\cos^{n-1}x\sin x$ 在两端都是 $0$，必须写清"上限处 $\cos\frac{\pi}{2}=0$、下限处 $\sin 0=0$"，不能直接跳过。第四个易错点是解方程时把 $J_n$ 移项写错，正确结果是 $nJ_n=(n-1)J_{n-2}$，多一个 $1$ 或少一个 $1$ 都会导致公式错误。
+@@TIPS
+以后看到 $\int_0^{\frac{\pi}{2}}\sin^nx\,dx$ 或 $\int_0^{\frac{\pi}{2}}\cos^nx\,dx$，固定三步：① 用分部积分得 $I_n=\frac{n-1}{n}I_{n-2}$（正弦、余弦的公式完全一样）；② 算出 $I_0$ 与 $I_1$；③ 按奇偶连乘到底。这个公式在概率、级数、沃利斯公式里都会反复用到。
+@@SUMMARY
+看到 $\int_0^{\frac{\pi}{2}}\sin^nx\,dx$ 或 $\cos^nx$ → 分部积分（把一次幂放 $dv$）→ 得 $I_n=\frac{n-1}{n}I_{n-2}$ → 分奇偶连乘。
+
+@@PROBLEM id=7.4-5 type=基础训练 star=★★ time=7分钟 imp=★★★★★ kp=定积分/递推公式
+@@STEM
+设 $n$ 为非负整数，$I_n=\int_0^{\frac{\pi}{2}}\sin^nx\,dx$。求 $I_0$、$I_1$，证明 $I_n=\frac{n-1}{n}I_{n-2}$（$n\geq 2$），并写出沃利斯公式：当 $n=2m$ 与 $n=2m+1$ 时 $I_n$ 的表达式。（专项训练原创题）
+@@POINT
+正弦幂积分的递推公式、奇偶分情况与沃利斯公式。
+@@IDENTIFY
+看到积分 $\int_0^{\frac{\pi}{2}}\sin^nx\,dx$、要求"递推公式"和"奇偶表达式"，属于沃利斯公式的标准题型 → 先分部积分得递推式 $I_n=\frac{n-1}{n}I_{n-2}$，再按奇偶把递推式连乘到底：偶次最终落到 $I_0=\frac{\pi}{2}$，奇次最终落到 $I_1=1$，连乘中出现的都是 $1,\frac23,\frac34,\cdots$ 这类分数，合并后即为双阶乘之比。
+@@FORMULAS
+1. 分部积分公式：$\int_a^b u\,dv=\left[uv\right]_a^b-\int_a^b v\,du$
+2. 同角三角函数平方关系：$\sin^2x+\cos^2x=1$
+3. 递推公式：$I_n=\frac{n-1}{n}I_{n-2}$
+4. 基本积分：$I_0=\frac{\pi}{2}$，$I_1=1$
+@@IDEA
+推导与余弦的情形完全一样：把 $\sin^nx$ 写成 $\sin^{n-1}x\cdot\sin x$，取 $u=\sin^{n-1}x$、$dv=\sin x\,dx$，则 $v=-\cos x$，$du=(n-1)\sin^{n-2}x\cos x\,dx$。分部积分后边界项仍为 $0$，剩下的积分用 $\cos^2x=1-\sin^2x$ 换成 $I_{n-2}$ 与 $I_n$，解方程得 $I_n=\frac{n-1}{n}I_{n-2}$。写出奇偶公式的方法是"连乘"：从 $n$ 开始每次减 $2$，把 $\frac{n-1}{n}$、$\frac{n-3}{n-2}$、$\cdots$ 一路乘到 $I_0$ 或 $I_1$。
+@@SOLUTION
+第一步，算两个初始值。
+$$I_0=\int_0^{\frac{\pi}{2}}\sin^0x\,dx=\int_0^{\frac{\pi}{2}}1\,dx=\left[x\right]_0^{\frac{\pi}{2}}=\frac{\pi}{2}$$
+$$I_1=\int_0^{\frac{\pi}{2}}\sin x\,dx=\left[-\cos x\right]_0^{\frac{\pi}{2}}=-\cos\frac{\pi}{2}-\left(-\cos 0\right)=0+1=1$$
+第二步，推导递推公式。当 $n\geq 2$ 时，把被积函数拆开：
+$$\sin^nx=\sin^{n-1}x\cdot\sin x$$
+在 $I_n=\int_0^{\frac{\pi}{2}}\sin^nx\,dx$ 上用分部积分，取
+$$u=\sin^{n-1}x,\qquad dv=\sin x\,dx$$
+则
+$$du=(n-1)\sin^{n-2}x\cos x\,dx,\qquad v=-\cos x$$
+代入 $\int_0^{\frac{\pi}{2}}u\,dv=\left[uv\right]_0^{\frac{\pi}{2}}-\int_0^{\frac{\pi}{2}}v\,du$：
+$$I_n=\left[-\sin^{n-1}x\cos x\right]_0^{\frac{\pi}{2}}-\int_0^{\frac{\pi}{2}}\left(-\cos x\right)(n-1)\sin^{n-2}x\cos x\,dx$$
+第三步，算边界项。上限 $x=\frac{\pi}{2}$ 时 $\cos\frac{\pi}{2}=0$，故 $-\sin^{n-1}\frac{\pi}{2}\cdot\cos\frac{\pi}{2}=-1\cdot 0=0$；下限 $x=0$ 时 $\sin 0=0$，故 $-\sin^{n-1}0\cdot\cos 0=-0\cdot 1=0$。所以
+$$\left[-\sin^{n-1}x\cos x\right]_0^{\frac{\pi}{2}}=0-0=0$$
+第四步，化简积分项。注意两个负号相乘为正：
+$$I_n=0+(n-1)\int_0^{\frac{\pi}{2}}\cos^2x\sin^{n-2}x\,dx$$
+用 $\cos^2x=1-\sin^2x$ 替换：
+$$I_n=(n-1)\int_0^{\frac{\pi}{2}}\left(1-\sin^2x\right)\sin^{n-2}x\,dx=(n-1)\int_0^{\frac{\pi}{2}}\left(\sin^{n-2}x-\sin^nx\right)dx$$
+拆成两个积分：
+$$I_n=(n-1)I_{n-2}-(n-1)I_n$$
+第五步，解出递推公式。移项合并：
+$$I_n+(n-1)I_n=(n-1)I_{n-2}\quad\Rightarrow\quad nI_n=(n-1)I_{n-2}$$
+两边除以 $n$：
+$$I_n=\frac{n-1}{n}I_{n-2}\quad(n\geq 2)$$
+第六步，按奇偶连乘，写出沃利斯公式。
+情形一：$n=2m$（偶次）。把递推式依次用于 $n=2m,2m-2,\cdots,2$：
+$$I_{2m}=\frac{2m-1}{2m}I_{2m-2}=\frac{2m-1}{2m}\cdot\frac{2m-3}{2m-2}I_{2m-4}=\cdots=\frac{2m-1}{2m}\cdot\frac{2m-3}{2m-2}\cdots\frac{3}{4}\cdot\frac{1}{2}I_0$$
+把 $I_0=\frac{\pi}{2}$ 代入，并写成双阶乘：分子是 $1\cdot 3\cdot 5\cdots(2m-1)=(2m-1)!!$，分母是 $2\cdot 4\cdots 2m=(2m)!!$，于是
+$$I_{2m}=\frac{(2m-1)!!}{(2m)!!}\cdot\frac{\pi}{2}$$
+情形二：$n=2m+1$（奇次）。递推式依次用于 $n=2m+1,2m-1,\cdots,3$：
+$$I_{2m+1}=\frac{2m}{2m+1}I_{2m-1}=\frac{2m}{2m+1}\cdot\frac{2m-2}{2m-1}I_{2m-3}=\cdots=\frac{2m}{2m+1}\cdot\frac{2m-2}{2m-1}\cdots\frac{2}{3}I_1$$
+把 $I_1=1$ 代入，同样写成双阶乘：分子是 $2\cdot 4\cdots 2m=(2m)!!$，分母是 $3\cdot 5\cdots(2m+1)=(2m+1)!!$，于是
+$$I_{2m+1}=\frac{(2m)!!}{(2m+1)!!}$$
+第七步，验算。取 $m=1$：$I_2=\frac{(1)!!}{(2)!!}\cdot\frac{\pi}{2}=\frac{1}{2}\cdot\frac{\pi}{2}=\frac{\pi}{4}$，与用 $\sin^2x=\frac{1-\cos 2x}{2}$ 直接积分的结果 $\frac{\pi}{4}$ 一致；$I_3=\frac{(2)!!}{(3)!!}=\frac{2}{3}$，与前面用换元 $u=\sin x$ 算到的 $\frac23$ 一致。取 $m=2$：$I_4=\frac{1\cdot 3}{2\cdot 4}\cdot\frac{\pi}{2}=\frac{3\pi}{16}\approx 0.5890$，而 $I_4=\frac34I_2=\frac34\cdot\frac{\pi}{4}=\frac{3\pi}{16}$，一致；$I_5=\frac{2\cdot 4}{3\cdot 5}=\frac{8}{15}\approx 0.5333$，而 $I_5=\frac45I_3=\frac45\cdot\frac23=\frac{8}{15}$，一致。四组数值全部验算通过。
+@@ANSWER
+$I_0=\frac{\pi}{2}$，$I_1=1$，$I_n=\frac{n-1}{n}I_{n-2}$（$n\geq 2$）；$I_{2m}=\frac{(2m-1)!!}{(2m)!!}\cdot\frac{\pi}{2}$，$I_{2m+1}=\frac{(2m)!!}{(2m+1)!!}$
+@@PITFALL
+第一个易错点是奇偶公式的分子分母弄反：偶次 $I_{2m}$ 比奇次多一个因子 $\frac{\pi}{2}$，且分子的双阶乘到 $2m-1$ 为止（比分母少一个因子 $2m$）。第二个易错点是连乘时漏项：从 $I_{2m}$ 连乘到 $I_0$ 一共乘 $m$ 个分数，最后一个是 $\frac{1}{2}$，漏掉它就得到错误结果。第三个易错点是 $v=-\cos x$ 的负号与 $du$ 中的正号抵消这一步：$dv=\sin x\,dx$ 对应 $v=-\cos x$，而 $du=(n-1)\sin^{n-2}x\cos x\,dx$（正号），所以 $-\int v\,du=+\int\cos^2x\sin^{n-2}x\,dx$，两个符号必须都写出来。第四个易错点是双阶乘记号写成普通阶乘，$(2m)!!$ 表示 $2\cdot 4\cdots 2m$，不是 $(2m)!$。
+@@TIPS
+以后看到 $\int_0^{\frac{\pi}{2}}\sin^nx\,dx$、$\int_0^{\frac{\pi}{2}}\cos^nx\,dx$ 求具体值，直接用奇偶公式：偶次带 $\frac{\pi}{2}$ 和 $\frac{(2m-1)!!}{(2m)!!}$，奇次只有 $\frac{(2m)!!}{(2m+1)!!}$。另外记一句口诀："偶次有 $\pi$、奇次没有 $\pi$"，用 $I_2=\frac{\pi}{4}$、$I_3=\frac23$ 来检验就不会记错。
+@@SUMMARY
+看到 $\int_0^{\frac{\pi}{2}}\sin^nx\,dx$ 求值 → 用 $I_n=\frac{n-1}{n}I_{n-2}$ 按奇偶连乘 → 偶次带 $\frac{\pi}{2}$、奇次不带。
+
+@@PROBLEM id=7.4-6 type=提高训练 star=★★★ time=12分钟 imp=★★★★ kp=定积分/递推公式
+@@STEM
+设 $I_n=\int_0^1x^ne^{x}\,dx$（$n$ 为非负整数）。（1）求 $I_0$、$I_1$、$I_2$；（2）证明递推公式 $I_n=e-nI_{n-1}$（$n\geq 1$）；（3）设 $A_n=\frac{I_n}{n!}$，证明 $A_n+A_{n-1}=\frac{e}{n!}$（$n\geq 1$）与 $A_n\to 0$，并求 $\lim_{n\to\infty}nI_n$。（专项训练原创题）
+@@POINT
+含参量积分的分部积分递推、由递推式构造辅助数列，以及用递推式求极限。
+@@IDENTIFY
+看到积分 $\int_0^1x^ne^{x}\,dx$、指标 $n$ 是幂次、题目要求"递推公式"并用递推式求极限，属于含参量积分的递推题型 → 用分部积分取 $u=x^n$、$dv=e^{x}dx$ 得到 $I_n$ 与 $I_{n-1}$ 的关系 $I_n=e-nI_{n-1}$；它把 $I_n$ 与 $nI_{n-1}$ 联系起来，所以求 $nI_n$ 的极限时要把 $I_{n+1}$ 补进来，并用辅助数列 $A_n=\frac{I_n}{n!}$ 证明 $(n+1)A_{n+1}$ 就是部分和这一事实。
+@@FORMULAS
+1. 分部积分公式：$\int_a^b u\,dv=\left[uv\right]_a^b-\int_a^b v\,du$
+2. 指数函数的原函数：$\int e^{x}\,dx=e^{x}$
+3. 指数函数的特殊值：$e^0=1$，$e^1=e$
+4. 夹逼准则：若 $b_n\leq a_n\leq c_n$ 且 $\lim_{n\to\infty}b_n=\lim_{n\to\infty}c_n=A$，则 $\lim_{n\to\infty}a_n=A$
+@@IDEA
+第一问直接算：$I_0$ 是最简单的指数积分，$I_1$、$I_2$ 各用一次分部积分。第二问是标准动作：在 $I_n=\int_0^1x^ne^{x}dx$ 上取 $u=x^n$、$dv=e^{x}dx$，于是 $v=e^{x}$、$du=nx^{n-1}dx$，分部积分后出现 $nI_{n-1}$ 与边界项 $e$，移项即得 $I_n=e-nI_{n-1}$。第三问的关键是把递推式改写成"后一项决定前一项"的形式：把 $n$ 换成 $n+1$ 得 $I_{n+1}=e-(n+1)I_n$，于是
+$$(n+1)I_n=e-I_{n+1}$$
+这说明只要知道 $I_{n+1}$ 趋于 $0$，$(n+1)I_n$ 就趋于 $e$；而 $nI_n=(n+1)I_n-I_n$ 也随之趋于 $e$。为了证明 $I_{n+1}\to 0$，用放缩：在 $[0,1]$ 上 $1\leq e^{x}\leq e$，于是
+$$\frac{1}{n+2}\leq I_{n+1}=\int_0^1x^{n+1}e^{x}dx\leq\frac{e}{n+2}$$
+两端在 $n\to\infty$ 时都趋于 $0$，由夹逼准则得 $I_{n+1}\to 0$。第三问的后半部分要求讨论辅助数列 $A_n=\frac{I_n}{n!}$：把递推式 $I_n=e-nI_{n-1}$ 两边同除以 $n!$ 得
+$$A_n=\frac{e}{n!}-A_{n-1}$$
+这个关系说明 $A_n+A_{n-1}=\frac{e}{n!}$，是本题所有关于 $A_n$ 的结论的来源；再由 $I_n$ 的放缩 $\frac{1}{n+1}\leq I_n\leq\frac{e}{n+1}$ 除以 $n!$ 得
+$$\frac{1}{(n+1)!}\leq A_n\leq\frac{e}{(n+1)!}$$
+两端都趋于 $0$，所以 $A_n\to 0$。注意 $nI_n=n\cdot n!A_n$，阶乘增长极快，$A_n\to 0$ 完全不能说明 $nI_n\to 0$，真正决定 $nI_n$ 极限的是 $(n+1)I_n=e-I_{n+1}$ 这条关系，下面把每一步都算清楚。
+@@SOLUTION
+第（1）问，算三个初始值。
+$$I_0=\int_0^1x^0e^{x}\,dx=\int_0^1e^{x}\,dx=\left[e^{x}\right]_0^1=e^{1}-e^{0}=e-1$$
+$I_1$ 用分部积分。取 $u=x$、$dv=e^{x}dx$，则 $du=dx$、$v=e^{x}$，代入 $\int_0^1u\,dv=\left[uv\right]_0^1-\int_0^1v\,du$：
+$$I_1=\left[xe^{x}\right]_0^1-\int_0^1e^{x}\,dx=\left(1\cdot e-0\cdot 1\right)-\left(e-1\right)=e-e+1=1$$
+$I_2$ 同样用分部积分。取 $u=x^2$、$dv=e^{x}dx$，则 $du=2x\,dx$、$v=e^{x}$：
+$$I_2=\left[x^2e^{x}\right]_0^1-\int_0^12xe^{x}\,dx=\left(1\cdot e-0\right)-2\int_0^1xe^{x}\,dx=e-2I_1=e-2$$
+第（2）问，推递推公式。对一般的 $n\geq 1$，取
+$$u=x^n,\qquad dv=e^{x}\,dx$$
+则
+$$du=nx^{n-1}\,dx,\qquad v=e^{x}$$
+代入分部积分公式：
+$$I_n=\left[x^ne^{x}\right]_0^1-\int_0^1e^{x}\cdot nx^{n-1}\,dx$$
+先算边界项：上限 $x=1$ 处为 $1^n\cdot e=e$；下限 $x=0$ 处为 $0^n\cdot e^{0}=0$（$n\geq 1$ 时 $0^n=0$）。所以
+$$\left[x^ne^{x}\right]_0^1=e-0=e$$
+再算积分项，把常数 $n$ 提到积分号外，并注意 $\int_0^1x^{n-1}e^{x}dx$ 按定义就是 $I_{n-1}$：
+$$\int_0^1e^{x}\cdot nx^{n-1}\,dx=n\int_0^1x^{n-1}e^{x}\,dx=nI_{n-1}$$
+因此
+$$I_n=e-nI_{n-1}\quad(n\geq 1)$$
+用 $n=1$、$n=2$ 检验：$n=1$ 时 $e-1\cdot I_0=e-(e-1)=1=I_1$，相符；$n=2$ 时 $e-2I_1=e-2=I_2$，相符。
+第（3）问，先证 $I_{n+1}\to 0$。当 $0\leq x\leq 1$ 时，$e^{0}=1\leq e^{x}\leq e^{1}=e$（指数函数单调递增），两边同乘非负数 $x^{n+1}$ 得
+$$x^{n+1}\leq x^{n+1}e^{x}\leq ex^{n+1}$$
+在 $[0,1]$ 上积分，由积分的保序性得
+$$\int_0^1x^{n+1}\,dx\leq I_{n+1}\leq e\int_0^1x^{n+1}\,dx$$
+其中
+$$\int_0^1x^{n+1}\,dx=\left[\frac{x^{n+2}}{n+2}\right]_0^1=\frac{1}{n+2}-0=\frac{1}{n+2}$$
+所以
+$$\frac{1}{n+2}\leq I_{n+1}\leq\frac{e}{n+2}$$
+两端当 $n\to\infty$ 时都趋于 $0$（因为 $\frac{1}{n+2}\to 0$ 且常数 $e$ 倍后仍趋于 $0$），由夹逼准则得
+$$\lim_{n\to\infty}I_{n+1}=0$$
+第（3）问续，求 $nI_n$ 的极限。把第（2）问的递推式 $I_n=e-nI_{n-1}$ 中的 $n$ 换成 $n+1$：
+$$I_{n+1}=e-(n+1)I_n$$
+把含 $(n+1)I_n$ 的项移到左边：
+$$(n+1)I_n=e-I_{n+1}$$
+两边让 $n\to\infty$，右边第一项 $e$ 是常数，第二项由上面的夹逼结果趋于 $0$，所以
+$$\lim_{n\to\infty}(n+1)I_n=e-0=e$$
+最后把它化成题目要的 $nI_n$。因为
+$$nI_n=(n+1)I_n-I_n$$
+而 $I_n$ 满足 $\frac{1}{n+1}\leq I_n\leq\frac{e}{n+1}$（把上面的放缩中的 $n+1$ 换成 $n$ 即可得，两端都趋于 $0$），由夹逼准则
+$$\lim_{n\to\infty}I_n=0$$
+于是
+$$\lim_{n\to\infty}nI_n=\lim_{n\to\infty}(n+1)I_n-\lim_{n\to\infty}I_n=e-0=e$$
+第（3）问续，说明辅助数列 $A_n=\frac{I_n}{n!}$。把递推式 $I_n=e-nI_{n-1}$ 两边同除以 $n!$：
+$$A_n=\frac{I_n}{n!}=\frac{e}{n!}-\frac{nI_{n-1}}{n!}=\frac{e}{n!}-\frac{I_{n-1}}{(n-1)!}=\frac{e}{n!}-A_{n-1}\quad(n\geq 1)$$
+这个式子说明 $A_n+A_{n-1}=\frac{e}{n!}$，于是
+$$(n+1)A_{n+1}=A_{n+1}+A_n+A_n=\frac{e}{(n+1)!}+A_n$$
+由 $A_n>0$（因为 $I_n=\int_0^1x^ne^{x}dx>0$，被积函数在 $(0,1]$ 上为正）得 $A_n<\frac{e}{(n+1)!}+A_n=(n+1)A_{n+1}$，同时由 $A_{n+1}>0$ 得
+$$A_n=\frac{I_n}{n!}>0$$
+再用 $I_n$ 的界估计 $A_n$：由 $\frac{1}{n+1}\leq I_n\leq\frac{e}{n+1}$ 得
+$$\frac{1}{(n+1)!}\leq A_n\leq\frac{e}{(n+1)!}$$
+两端在 $n\to\infty$ 时都趋于 $0$（阶乘增长远快于任何常数倍），所以
+$$\lim_{n\to\infty}A_n=0$$
+这也说明 $nI_n=n\cdot n!A_n$ 不能直接用 $A_n\to 0$ 判断，必须用上面的 $(n+1)I_n=e-I_{n+1}$ 这条精确关系。
+第（3）问续，验算。取 $n=1$、$n=2$：$1\cdot I_1=1$，$2I_2=2(e-2)\approx 1.4366$，$3I_3=3\left(e-3I_2\right)=3\left(e-3(e-2)\right)=3(6-2e)=18-6e\approx 1.69031$，$4I_4=4\left(e-4I_3\right)=4\left(e-4(6-2e)\right)=4(9e-24)=36e-96\approx 1.85815$，$5I_5=5\left(e-5I_4\right)=5\left(e-45e+120\right)=5(120-44e)=600-220e\approx 1.97800$。可见 $nI_n$ 随 $n$ 增大而上升，趋向 $e\approx 2.71828$。为核对这一趋势，再用递推式把相应的 $I_n$ 也算出来：$I_3=e-3I_2=e-3(e-2)=6-2e\approx 0.56344$，$I_4=e-4I_3=e-4(6-2e)=9e-24\approx 0.46454$，$I_5=e-5I_4=e-5(9e-24)=120-44e\approx 0.39560$，于是 $3I_3=18-6e\approx 1.69031$，$4I_4=36e-96\approx 1.85815$，$5I_5=600-220e\approx 1.97800$，确实逐项上升并接近 $2.71828$。再用 $I_0=e-1\approx 1.71828$ 核对递推式：$e-1\cdot I_0=e-(e-1)=1=I_1$；$e-2I_1=e-2\approx 0.71828=I_2$，都相符。$A_1=\frac{I_1}{1!}=1$，$A_2=\frac{I_2}{2!}=\frac{e-2}{2}\approx 0.35914$，$A_1+A_2=\frac{e}{2!}\approx 1.35914$，与 $A_2+A_1=\frac{e}{2}$ 一致，辅助关系也验算通过。
+@@ANSWER
+$I_0=e-1$，$I_1=1$，$I_2=e-2$；$I_n=e-nI_{n-1}$（$n\geq 1$）；$A_n=\frac{I_n}{n!}$ 满足 $A_n+A_{n-1}=\frac{e}{n!}$ 且 $A_n\to 0$，$\lim_{n\to\infty}nI_n=e$
+@@PITFALL
+第一个易错点是分部积分的符号：取 $u=x^n$、$dv=e^{x}dx$ 时 $v=e^{x}$（不是 $-e^{x}$），所以边界项是 $+e$，递推式是 $I_n=e-nI_{n-1}$（若被积函数换成 $e^{-x}$，则 $v=-e^{-x}$，边界项变成 $-\frac1e$，递推式也随之改变，两者不能混）。第二个易错点是求 $nI_n$ 的极限时想直接对 $I_n=e-nI_{n-1}$ 取极限：这个式子里 $nI_{n-1}$ 是"无穷乘零"型，不能拆开，必须把 $n$ 换成 $n+1$ 写成 $(n+1)I_n=e-I_{n+1}$，再先证 $I_{n+1}\to 0$。第三个易错点是由 $A_n>0$ 就断定 $nI_n\to 0$：$nI_n=n\cdot n!A_n$，阶乘增长极快，$A_n\to 0$ 完全不能说明 $nI_n$ 趋于 $0$。第四个易错点是放缩 $1\leq e^{x}\leq e$ 时忘记区间必须是 $[0,1]$，在更宽的区间上 $e^{x}$ 的上界会变大。
+@@TIPS
+以后看到 $\int_0^1x^ne^{x}dx$ 这类"幂函数乘指数函数"的积分，一律用分部积分取 $u$ 为幂函数、$dv$ 为指数函数的部分，得到形如 $I_n=e-nI_{n-1}$ 的递推式。当递推式中常数项是 $e$（端点处的指数函数值）时，把 $n$ 换成 $n+1$ 得到 $(n+1)I_n=e-I_{n+1}$，于是问题归结为证明 $I_{n+1}\to 0$；这一步永远用 $\frac{c_1}{n+1}\leq I_{n+1}\leq\frac{c_2}{n+1}$ 的放缩加夹逼准则完成。
+@@SUMMARY
+看到 $\int_0^1x^ne^{x}dx$ → 分部积分取 $u=x^n$、$dv=e^{x}dx$ → 得 $I_n=e-nI_{n-1}$ → 换成 $n+1$ 得 $(n+1)I_n=e-I_{n+1}$ → 用夹逼证 $I_{n+1}\to 0$ → 得 $nI_n\to e$。

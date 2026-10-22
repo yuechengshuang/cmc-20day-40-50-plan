@@ -1,0 +1,859 @@
+@@CHAPTER 第六章 一元函数积分学（专项题库）
+
+@@GUIDE
+本章拿分指南：一元函数积分学是 CMC 初赛里最容易拿分、也最容易白白丢分的一章。填空题 5 道里通常有 1~2 道是积分或与积分直接相关，解答题里"算一个不定积分、定积分"几乎年年出现。也就是说，只要积分这一块形成条件反射，你 40~50 分的目标里就有 8~15 分是稳的；反过来，积分算不对，后面的微分方程、二重积分、甚至级数都会连带崩掉。
+
+- 必须练到条件反射的两件事：一是"凑微分"（第一换元法），二是"分部积分"。看到 $\int f(ax+b)\,dx$ 就要立刻想到把 $ax+b$ 整体设成 $u$；看到"幂函数乘指数、幂函数乘对数、幂函数乘三角、指数乘三角"，或者单独出现的 $\ln x$、$\arctan x$，就要立刻想分部积分。
+- 换元的铁律是"三样一起换"：被积表达式里的 $x$、微分 $dx$、如果是定积分还有上下限。少换一样，答案必错。
+- 三角代换记住三句口令：含 $\sqrt{a^2-x^2}$ 令 $x=a\sin t$；含 $\sqrt{x^2+a^2}$ 令 $x=a\tan t$；含 $\sqrt{x^2-a^2}$ 令 $x=a\sec t$。做完代换要画一个直角三角形，把 $\sin t$、$\cos t$、$\tan t$ 用 $x$ 表示出来，这是换回 $x$ 最不容易出错的办法。
+- 分部积分的铁律：把"求导以后会变简单"的那部分取作 $u$，剩下的连同 $dx$ 一起取作 $dv$。取 $u$ 的口诀是"反、对、幂、三、指"（反三角 > 对数 > 幂函数 > 三角函数 > 指数函数），排在前面的当 $u$。
+- 指数函数与三角函数相乘出现"循环"时，不要硬算，用两次分部积分后把原积分当成未知数解方程。
+- 每道积分题算完，务必把答案求导验算一遍，这是本章唯一可靠的检查手段；不定积分的答案末尾绝对不能漏掉常数 $C$。
+- 本阶段不追求技巧性极强的积分题（例如需要复杂递推、特殊放缩的题），把上面这些套路的熟练度练到"看到就会"就足够。
+@@GUIDEEND
+
+@@SECTION 6.1 题型一 基本积分公式与第一换元法（凑微分）
+
+@@METHOD
+这一类题我到底应该记住什么？① 先背熟基本积分公式（幂函数、指数函数、$\frac{1}{x}$、三角函数等），它们是所有积分的零件，公式不熟一切免谈；② 看到 $\int f(ax+b)\,dx$，把 $ax+b$ 整体设成 $u$，则 $dx=\frac{1}{a}\,du$，答案就是把基本公式里的 $u$ 换成 $ax+b$ 之后再乘一个 $\frac{1}{a}$；③ 看到被积函数里有一坨东西"恰好是旁边那个因子的导数"（如 $x$ 与 $x^2$、$\frac{1}{x}$ 与 $\ln x$、$x$ 与 $1+x^2$），就把那一坨整体设成 $u$，这叫凑微分；④ 凑微分的判断口令是"谁求导等于旁边那个因子，就把谁设成 $u$"。这四句话覆盖了本章绝大多数第一换元法题。
+@@METHODEND
+
+@@PROBLEM id=6.1-1 type=母题 star=★ time=5分钟 imp=★★★★★ kp=积分/凑微分
+@@STEM
+求不定积分 $\int (2x+1)^5\,dx$。（专项训练原创题）
+@@POINT
+基本积分公式与第一换元法（凑微分）中最基础的 $\int f(ax+b)\,dx$ 型。
+@@IDENTIFY
+看到被积函数是"一次式的正整数次幂"，即形如 $\int (ax+b)^n\,dx$ 的结构 → 属于第一换元法里最基础的 $\int f(ax+b)\,dx$ 型 → 用"令 $u=ax+b$，则 $dx=\frac{1}{a}\,du$，答案乘 $\frac{1}{a}$"的方法。
+@@FORMULAS
+1. $\int u^n\,du=\frac{u^{n+1}}{n+1}+C$（$n\neq -1$）
+2. 若 $u=ax+b$，则 $du=a\,dx$，即 $dx=\frac{1}{a}\,du$
+3. $\left(\frac{(2x+1)^6}{12}\right)$ 的求导要用复合函数求导法则（链式法则）
+@@IDEA
+被积函数里出现的是 $2x+1$，而微分 $dx$ 是 $x$ 的微分，两者"不同步"，不能直接把 $2x+1$ 当成 $u$ 就用幂函数公式。正确做法是把 $dx$ 换成与 $2x+1$ 配套的微分：因为 $d(2x+1)=2\,dx$，所以 $dx=\frac{1}{2}\,d(2x+1)$。换完之后整个积分就退化成最基本的幂函数积分，算完再把 $u$ 换回 $x$。
+@@SOLUTION
+令 $u=2x+1$，两边微分得
+$$du=2\,dx$$
+所以
+$$dx=\frac{1}{2}\,du$$
+把 $2x+1$ 换成 $u$、把 $dx$ 换成 $\frac{1}{2}\,du$，原积分变为
+$$\int (2x+1)^5\,dx=\int u^5\cdot\frac{1}{2}\,du=\frac{1}{2}\int u^5\,du$$
+由幂函数积分公式 $\int u^5\,du=\frac{u^6}{6}+C_1$，得
+$$\frac{1}{2}\int u^5\,du=\frac{1}{2}\cdot\frac{u^6}{6}+C=\frac{u^6}{12}+C$$
+最后把 $u=2x+1$ 换回 $x$，得到
+$$\int (2x+1)^5\,dx=\frac{(2x+1)^6}{12}+C$$
+验算：对 $\frac{(2x+1)^6}{12}$ 求导。外层是幂函数 $u^6$，内层是 $u=2x+1$，由链式法则
+$$\left(\frac{(2x+1)^6}{12}\right)'=\frac{1}{12}\cdot 6(2x+1)^5\cdot 2=(2x+1)^5$$
+求导结果与被积函数完全相同，答案正确。
+@@ANSWER
+$\frac{(2x+1)^6}{12}+C$
+@@PITFALL
+最常见的错误是漏掉系数 $\frac{1}{2}$，写成 $\frac{(2x+1)^6}{6}+C$。根源是只把 $2x+1$ 换成了 $u$，却没有换 $dx$，而 $dx$ 并不等于 $d(2x+1)$，两者相差因子 $2$。第二个常见错误是漏写积分常数 $C$，不定积分漏 $C$ 按错处理。
+@@TIPS
+以后看到 $\int (ax+b)^n\,dx$、$\int e^{ax+b}\,dx$、$\int \frac{1}{ax+b}\,dx$、$\int \sin(ax+b)\,dx$ 这类"整体是一次式"的积分，一律先写成 $\frac{1}{a}\int f(u)\,du$，那个 $\frac{1}{a}$ 是必须记住的"出场费"。
+@@SUMMARY
+看到 $\int f(ax+b)\,dx$ → 令 $u=ax+b$ → 记住 $dx=\frac{1}{a}\,du$，最后答案乘 $\frac{1}{a}$。
+@@ENDPROBLEM
+
+@@PROBLEM id=6.1-2 type=变式 star=★★ time=5分钟 imp=★★★★★ kp=积分/凑微分
+@@STEM
+求不定积分 $\int x e^{x^2}\,dx$。（专项训练原创题）
+@@POINT
+凑微分：识别出"$x$ 恰好是 $x^2$ 的导数的一半"，把 $x^2$ 整体设成 $u$。
+@@IDENTIFY
+看到被积函数是"$x$ 乘 $e^{x^2}$"这种"幂函数乘复合指数函数"的结构，而且指数上的 $x^2$ 求导正好产生旁边的因子 $x$ → 属于凑微分题 → 用"令 $u=x^2$，把 $x\,dx$ 凑成 $\frac{1}{2}\,du$"的方法。
+@@FORMULAS
+1. $\int e^u\,du=e^u+C$
+2. $(x^2)'=2x$，所以 $x\,dx=\frac{1}{2}\,d(x^2)$
+@@IDEA
+被积函数里有两个因子，单独看哪个都积不出来，但指数上的 $x^2$ 求导等于 $2x$，与外面前面的因子 $x$ 只差一个常数 $2$。常数可以自由进出积分号，所以把 $x^2$ 设成 $u$，就能把整个积分变成最基础的 $\int e^u\,du$。
+@@SOLUTION
+令 $u=x^2$，两边微分得
+$$du=2x\,dx$$
+所以
+$$x\,dx=\frac{1}{2}\,du$$
+代入原积分：
+$$\int x e^{x^2}\,dx=\int e^{u}\cdot\frac{1}{2}\,du=\frac{1}{2}\int e^u\,du$$
+由指数函数积分公式 $\int e^u\,du=e^u+C$，得
+$$\frac{1}{2}\int e^u\,du=\frac{1}{2}e^u+C$$
+再把 $u=x^2$ 换回 $x$：
+$$\int x e^{x^2}\,dx=\frac{1}{2}e^{x^2}+C$$
+验算：对 $\frac{1}{2}e^{x^2}$ 求导，外层是指数函数、内层是 $x^2$，由链式法则
+$$\left(\frac{1}{2}e^{x^2}\right)'=\frac{1}{2}e^{x^2}\cdot 2x=x e^{x^2}$$
+求导结果与被积函数相同，答案正确。
+@@ANSWER
+$\frac{1}{2}e^{x^2}+C$
+@@PITFALL
+两个典型错误：一是忘记 $du=2x\,dx$ 里的因子 $2$，直接写成 $\int e^u\,du=e^{x^2}+C$，少了 $\frac{1}{2}$；二是看到 $e^{x^2}$ 就想用 $\int e^u\,du$ 的公式，却把 $x$ 落在外面不管，须知 $x$ 必须一并凑进 $du$ 里，否则换元不彻底。
+@@TIPS
+以后只要看到"一个因子正好是另一个复合函数内层的导数（允许差一个常数倍数）"，例如 $\int x e^{x^2}dx$、$\int x\sin(x^2)dx$、$\int \frac{x}{1+x^2}dx$，就立刻把那个内层整体设成 $u$。做题时先在心里问一句："旁边这个因子是谁的导数？"
+@@SUMMARY
+看到 $\int x e^{x^2}\,dx$ → 内层 $x^2$ 求导得 $2x$ → 令 $u=x^2$，$x\,dx=\frac{1}{2}du$ → 答案带 $\frac{1}{2}$。
+@@ENDPROBLEM
+
+@@PROBLEM id=6.1-3 type=变式 star=★★ time=5分钟 imp=★★★★★ kp=积分/凑微分
+@@STEM
+求不定积分 $\int \frac{\ln x}{x}\,dx$（$x>0$）。（专项训练原创题）
+@@POINT
+凑微分：识别出 $\frac{1}{x}$ 是 $\ln x$ 的导数，把 $\ln x$ 整体设成 $u$，化成幂函数积分。
+@@IDENTIFY
+看到被积函数是"$\ln x$ 乘 $\frac{1}{x}$"这种"对数函数乘它的导数"的结构 → 属于凑微分题 → 用"令 $u=\ln x$，则 $du=\frac{1}{x}\,dx$"，把积分化成 $\int u\,du$。
+@@FORMULAS
+1. $(\ln x)'=\frac{1}{x}$，所以 $\frac{1}{x}\,dx=d(\ln x)$
+2. $\int u\,du=\frac{u^2}{2}+C$
+@@IDEA
+分母上的 $\frac{1}{x}$ 正是 $\ln x$ 的导数，这说明 $\ln x$ 就是那个"该被整体设成 $u$"的东西。设 $u=\ln x$ 之后，$\frac{1}{x}\,dx$ 整块变成 $du$，被积函数就只剩一个 $u$，是最简单的幂函数积分。
+@@SOLUTION
+令 $u=\ln x$。因为 $x>0$，所以 $u$ 有定义。由求导公式 $(\ln x)'=\frac{1}{x}$ 得
+$$du=\frac{1}{x}\,dx$$
+代入原积分：
+$$\int \frac{\ln x}{x}\,dx=\int \ln x\cdot\frac{1}{x}\,dx=\int u\,du$$
+由幂函数积分公式 $\int u\,du=\frac{u^2}{2}+C$，得
+$$\int u\,du=\frac{u^2}{2}+C$$
+再把 $u=\ln x$ 换回 $x$：
+$$\int \frac{\ln x}{x}\,dx=\frac{1}{2}(\ln x)^2+C$$
+验算：对 $\frac{1}{2}(\ln x)^2$ 求导。外层是幂函数 $u^2$ 的一半，内层是 $u=\ln x$，由链式法则
+$$\left(\frac{1}{2}(\ln x)^2\right)'=\frac{1}{2}\cdot 2\ln x\cdot\frac{1}{x}=\frac{\ln x}{x}$$
+求导结果与被积函数相同，答案正确。
+@@ANSWER
+$\frac{1}{2}(\ln x)^2+C$
+@@PITFALL
+最常见的错误是写成 $\ln\frac{x^2}{2}+C$ 或 $\frac{(\ln x)^2}{2}$ 中的 $\ln$ 漏掉平方符号，把 $(\ln x)^2$ 与 $\ln x^2$ 混为一谈：$\ln x^2=2\ln x$，而 $(\ln x)^2$ 是两个 $\ln x$ 相乘，两者完全不同。另外要注意 $\frac{1}{2}(\ln x)^2$ 不能再写成 $\frac{1}{2}\ln(x^2)$。
+@@TIPS
+以后看到 $\int \frac{\ln x}{x}dx$、$\int \frac{(\ln x)^n}{x}dx$、$\int \frac{1}{x\ln x}dx$ 这一类"$\ln x$ 与 $\frac{1}{x}$ 同时出现"的积分，一律令 $u=\ln x$。同理，看到 $\arcsin x$ 与 $\frac{1}{\sqrt{1-x^2}}$ 同时出现，就令 $u=\arcsin x$。
+@@SUMMARY
+看到 $\ln x$ 与 $\frac{1}{x}$ 同时出现 → 令 $u=\ln x$ → 积分变成 $\int u\,du$。
+@@ENDPROBLEM
+
+@@PROBLEM id=6.1-4 type=变式 star=★★ time=5分钟 imp=★★★★★ kp=积分/凑微分
+@@STEM
+求不定积分 $\int \frac{1}{x\ln x}\,dx$（$x>1$）。（专项训练原创题）
+@@POINT
+凑微分：把分母拆成 "$\ln x$" 与 "$\frac{1}{x}$" 两部分，令 $u=\ln x$，化成 $\int\frac{1}{u}du$。
+@@IDENTIFY
+看到被积函数的分母是 $x\ln x$、分子是 $1$，而 $\frac{1}{x}$ 正好是 $\ln x$ 的导数 → 属于凑微分题 → 用"令 $u=\ln x$，$du=\frac{1}{x}\,dx$"，把积分化成对数型 $\int\frac{1}{u}\,du$。
+@@FORMULAS
+1. $(\ln x)'=\frac{1}{x}$
+2. $\int\frac{1}{u}\,du=\ln|u|+C$
+3. $\frac{1}{x\ln x}=\frac{1}{\ln x}\cdot\frac{1}{x}$
+@@IDEA
+把被积函数写成 $\frac{1}{\ln x}\cdot\frac{1}{x}$ 之后就能看清：右半部分 $\frac{1}{x}\,dx$ 是 $d(\ln x)$，左半部分 $\frac{1}{\ln x}$ 是 $\frac{1}{u}$。所以令 $u=\ln x$，整个积分化为 $\int\frac{1}{u}\,du$，直接用对数型积分公式。这里 $x>1$ 保证 $u=\ln x>0$，绝对值可以直接去掉。
+@@SOLUTION
+先把被积函数拆开写：
+$$\frac{1}{x\ln x}=\frac{1}{\ln x}\cdot\frac{1}{x}$$
+因为 $x>1$，所以 $\ln x>0$。令 $u=\ln x$，由 $(\ln x)'=\frac{1}{x}$ 得
+$$du=\frac{1}{x}\,dx$$
+代入原积分：
+$$\int \frac{1}{x\ln x}\,dx=\int \frac{1}{\ln x}\cdot\frac{1}{x}\,dx=\int \frac{1}{u}\,du$$
+由对数型积分公式 $\int\frac{1}{u}\,du=\ln|u|+C$，并注意 $u=\ln x>0$，得
+$$\int \frac{1}{u}\,du=\ln|u|+C=\ln u+C$$
+再把 $u=\ln x$ 换回 $x$：
+$$\int \frac{1}{x\ln x}\,dx=\ln(\ln x)+C$$
+如果题目没有给出 $x>1$，写成 $\ln|\ln x|+C$ 更稳妥。
+验算：对 $\ln(\ln x)$ 求导。外层是对数函数、内层是 $\ln x$，由链式法则
+$$\left(\ln(\ln x)\right)'=\frac{1}{\ln x}\cdot\frac{1}{x}=\frac{1}{x\ln x}$$
+求导结果与被积函数相同，答案正确。
+@@ANSWER
+$\ln(\ln x)+C$（一般情形写 $\ln|\ln x|+C$）
+@@PITFALL
+两个错误最集中：一是把 $\frac{1}{x\ln x}$ 看成 $\frac{1}{x}\cdot\frac{1}{\ln x}$ 之后只把 $\frac{1}{x}$ 凑成 $du$，却把 $\frac{1}{\ln x}$ 当成常数忘掉换元，直接写成 $\ln x\cdot\frac{1}{\ln x}$ 之类的乱式子；二是忽略 $\ln x$ 必须有意义且不为 $0$，忘记真数要大于 $0$、分母 $\ln x\neq 0$，从而漏掉 $x>0$ 且 $x\neq 1$ 这个前提。
+@@TIPS
+以后看到分母是"某个函数乘它的导数"（如 $x\ln x$、$\sin x\cos x$、$x\sqrt{1+x^2}$ 等结构），先把这个函数整体设成 $u$，看能不能把积分变成 $\int\frac{1}{u}du$ 或 $\int u\,du$。凡是形如 $\int\frac{g'(x)}{g(x)}dx$ 的积分，答案一律是 $\ln|g(x)|+C$。
+@@SUMMARY
+看到 $\int\frac{g'(x)}{g(x)}\,dx$ → 令 $u=g(x)$ → 答案就是 $\ln|g(x)|+C$。
+@@ENDPROBLEM
+
+@@PROBLEM id=6.1-5 type=基础训练 star=★ time=4分钟 imp=★★★★★ kp=积分/凑微分
+@@STEM
+求不定积分 $\int \frac{x}{1+x^2}\,dx$。（专项训练原创题）
+@@POINT
+凑微分基础练习：分子 $x$ 是分母 $1+x^2$ 的导数的一半。
+@@IDENTIFY
+看到被积函数是分式，分母是 $1+x^2$、分子是 $x$，且分子恰好是分母导数 $2x$ 的一半 → 属于"分子是分母导数的常数倍"型凑微分题 → 用"令 $u=1+x^2$，$du=2x\,dx$"把积分化成 $\int\frac{1}{u}du$。
+@@FORMULAS
+1. $(1+x^2)'=2x$，所以 $x\,dx=\frac{1}{2}\,d(1+x^2)$
+2. $\int\frac{1}{u}\,du=\ln|u|+C$
+@@IDEA
+这类分式的通用想法是：如果分子是分母的导数（或只差一个常数倍），那么积分结果一定含 $\ln|分母|$。这里分母求导得 $2x$，分子是 $x$，正好是它的一半，所以把常数 $\frac{1}{2}$ 提到积分号外，令 $u=1+x^2$ 即可。因为 $1+x^2\geq 1>0$，绝对值可以直接去掉。
+@@SOLUTION
+令 $u=1+x^2$，两边微分得
+$$du=2x\,dx$$
+所以
+$$x\,dx=\frac{1}{2}\,du$$
+代入原积分：
+$$\int \frac{x}{1+x^2}\,dx=\int \frac{1}{1+x^2}\cdot x\,dx=\int \frac{1}{u}\cdot\frac{1}{2}\,du=\frac{1}{2}\int\frac{1}{u}\,du$$
+由对数型积分公式，并注意 $u=1+x^2>0$：
+$$\frac{1}{2}\int\frac{1}{u}\,du=\frac{1}{2}\ln|u|+C=\frac{1}{2}\ln(1+x^2)+C$$
+验算：对 $\frac{1}{2}\ln(1+x^2)$ 求导，外层是对数函数、内层是 $1+x^2$，由链式法则
+$$\left(\frac{1}{2}\ln(1+x^2)\right)'=\frac{1}{2}\cdot\frac{2x}{1+x^2}=\frac{x}{1+x^2}$$
+求导结果与被积函数相同，答案正确。
+@@ANSWER
+$\frac{1}{2}\ln(1+x^2)+C$
+@@PITFALL
+最常见的是漏掉 $\frac{1}{2}$，写成 $\ln(1+x^2)+C$。根源仍是没有把 $du=2x\,dx$ 这个关系写出来，看到分子分母"差不多"就直接套公式。另外，若分母是 $1-x^2$、分子是 $x$，则 $du=-2x\,dx$，会多出一个负号，符号必须逐个核对。
+@@TIPS
+以后看到 $\int\frac{x}{1+x^2}dx$、$\int\frac{x}{a^2+x^2}dx$、$\int\frac{2x+3}{x^2+3x+5}dx$ 这类"分子是分母导数（的常数倍）"的分式，一律令 $u=$ 分母，答案含 $\ln|u|$ 并乘上那个常数倍。
+@@SUMMARY
+看到分式的分子是分母的导数（差常数倍）→ 令 $u=$ 分母 → 答案含 $\ln|分母|$，常数倍要提到积分号外。
+@@ENDPROBLEM
+
+@@PROBLEM id=6.1-6 type=提高训练 star=★★★ time=8分钟 imp=★★★★ kp=积分/凑微分
+@@STEM
+求不定积分 $\int \frac{1}{1+e^x}\,dx$。（根据 CMC 常见题型改编）
+@@POINT
+凑微分中的"造导数"技巧：被积函数没有现成导数结构时，通过上下同乘一个因子把它造出来。
+@@IDENTIFY
+看到分母是 $1+e^x$ 这种"常数加指数函数"、分子是 $1$ 的分式，直接用基本公式套不上 → 属于需要"变形后凑微分"的提高型 → 用"分子分母同乘 $e^{-x}$，令 $u=1+e^{-x}$"的方法。
+@@FORMULAS
+1. $(e^{-x})'=-e^{-x}$，所以 $e^{-x}\,dx=-d(1+e^{-x})$
+2. $\int\frac{1}{u}\,du=\ln|u|+C$
+3. $e^{-x}=\frac{1}{e^x}$
+@@IDEA
+被积函数 $\frac{1}{1+e^x}$ 的分子是 $1$，它并不是分母 $1+e^x$ 的导数（分母的导数是 $e^x$），所以不能直接套对数型公式。但是 $\frac{1}{1+e^x}$ 与 $\frac{e^{-x}}{1+e^{-x}}$ 是恒等的：把分子分母同乘 $e^{-x}$ 即可。而后者的分子 $e^{-x}$ 恰好是分母 $1+e^{-x}$ 的导数的相反数，这就把导数结构"造"出来了，再令 $u=1+e^{-x}$ 就能用对数型公式。
+@@SOLUTION
+第一步：把被积函数变形。因为 $e^{-x}=\frac{1}{e^x}$，分子分母同乘 $e^{-x}$：
+$$\frac{1}{1+e^x}=\frac{1\cdot e^{-x}}{(1+e^x)\cdot e^{-x}}=\frac{e^{-x}}{e^{-x}+1}=\frac{e^{-x}}{1+e^{-x}}$$
+所以
+$$\int \frac{1}{1+e^x}\,dx=\int \frac{e^{-x}}{1+e^{-x}}\,dx$$
+第二步：凑微分。令
+$$u=1+e^{-x}$$
+两边微分，用到 $(e^{-x})'=-e^{-x}$：
+$$du=-e^{-x}\,dx$$
+所以
+$$e^{-x}\,dx=-du$$
+代入积分：
+$$\int \frac{e^{-x}}{1+e^{-x}}\,dx=\int \frac{-du}{u}=-\int\frac{1}{u}\,du$$
+由对数型积分公式，并注意 $u=1+e^{-x}>0$：
+$$-\int\frac{1}{u}\,du=-\ln|u|+C=-\ln(1+e^{-x})+C$$
+第三步：把答案化简成另一种常见形式。利用 $1+e^{-x}=\frac{e^x+1}{e^x}$ 与 $\ln\frac{A}{B}=\ln A-\ln B$：
+$$-\ln(1+e^{-x})=-\ln\frac{e^x+1}{e^x}=\ln e^x-\ln(e^x+1)=x-\ln(1+e^x)$$
+所以答案也可写成
+$$\int \frac{1}{1+e^x}\,dx=x-\ln(1+e^x)+C$$
+两种写法是同一个函数，不是"差一个常数"的两个答案。
+验算：对 $-\ln(1+e^{-x})$ 求导，外层是对数函数、内层是 $1+e^{-x}$，由链式法则
+$$\left(-\ln(1+e^{-x})\right)'=-\frac{1}{1+e^{-x}}\cdot(-e^{-x})=\frac{e^{-x}}{1+e^{-x}}=\frac{1}{e^x+1}$$
+求导结果与被积函数相同，答案正确。
+@@ANSWER
+$-\ln(1+e^{-x})+C$，也可写成 $x-\ln(1+e^x)+C$
+@@PITFALL
+最大的错误是直接把 $\frac{1}{1+e^x}$ 当成 $\frac{u'}{u}$ 型，写 $\ln(1+e^x)+C$。检验一下就知道错了：$\left(\ln(1+e^x)\right)'=\frac{e^x}{1+e^x}$，它不是 $\frac{1}{1+e^x}$。第二个错误是上下同乘 $e^{-x}$ 时只乘了分子或只乘了分母，改变了函数值。第三个错误是求导 $e^{-x}$ 时漏掉负号，导致答案符号反了。
+@@TIPS
+以后看到 $\int\frac{1}{1+e^x}dx$、$\int\frac{1}{1+e^{-x}}dx$、$\int\frac{e^x}{1+e^x}dx$、$\int\frac{1}{a^x+b}dx$ 这一类"分母含指数"的积分，先想"上下同乘同一个指数因子，把分子搭成分母的导数"。凡是答案里既有 $\ln$ 又有 $x$ 的形式，都可以用 $-\ln(1+e^{-x})=x-\ln(1+e^x)$ 互相转化。
+@@SUMMARY
+看到 $\int\frac{1}{1+e^x}\,dx$ 一类分母含指数的分式 → 上下同乘 $e^{-x}$ 造出导数结构 → 令 $u=1+e^{-x}$，答案 $-\ln(1+e^{-x})+C$。
+@@ENDPROBLEM
+
+@@SECTION 6.2 题型二 第二换元法（根式代换与三角代换）
+
+@@METHOD
+第一换元法是"看到现成的导数结构再去凑"，第二换元法是"被积函数里有根号、凑不出来，就自己设一个新变量把根号去掉"，所以叫主动换元。
+- 三句口令必须背成条件反射：含 $\sqrt{a^2-x^2}$ 令 $x=a\sin t$；含 $\sqrt{x^2+a^2}$ 令 $x=a\tan t$；含 $\sqrt{x^2-a^2}$ 令 $x=a\sec t$。
+- 换元必须同时换三样东西：被积表达式里的 $x$、微分 $dx$、如果是定积分还要把上下限换成 $t$ 的范围。
+- 三角代换做完后一定要画一个直角三角形，把这个角的对边、邻边、斜边用 $x$ 表示出来，再读出 $\sin t$、$\cos t$、$\tan t$ 的值，这是换回 $x$ 唯一不容易出错的办法。
+- 根号里出现 $\sqrt{x}$、$\sqrt[3]{x}$ 或 $\sqrt{ax+b}$ 时不用三角代换，直接令整个根式等于 $t$（整体代换），再把 $x$ 用 $t$ 表示、求出 $dx$。
+- 换元之后先检查两点：根号是不是真的被消掉了，$dx$ 是不是已经正确换成 $dt$ 的表达式。这两点没问题再动笔算。
+@@METHODEND
+
+@@PROBLEM id=6.2-1 type=母题 star=★★ time=10分钟 imp=★★★★★ kp=积分/三角代换
+@@STEM
+求不定积分 $\int \sqrt{4-x^2}\,dx$。（专项训练原创题）
+@@POINT
+第二换元法中的三角代换：$\sqrt{a^2-x^2}$ 型，令 $x=a\sin t$，把根号变成 $a\cos t$。
+@@IDENTIFY
+看到被积函数是根号下"常数减 $x^2$"，即 $\sqrt{a^2-x^2}$（本题 $a=2$）→ 属于三角代换题 → 用"令 $x=a\sin t$，$dx=a\cos t\,dt$，$\sqrt{a^2-x^2}=a\cos t$"，去根号后用二倍角公式降次。
+@@FORMULAS
+1. $\sqrt{a^2-x^2}$ 型：令 $x=a\sin t$，则 $dx=a\cos t\,dt$，$\sqrt{a^2-x^2}=a\cos t$
+2. $\sin^2 t+\cos^2 t=1$
+3. 降次公式 $\cos^2 t=\frac{1+\cos 2t}{2}$，$\sin 2t=2\sin t\cos t$
+@@IDEA
+根号 $\sqrt{4-x^2}$ 直接积不出来，因为它不是任何简单函数的导数形式。但由恒等式 $\sin^2 t+\cos^2 t=1$ 可以想到：只要让 $x$ 等于 $2\sin t$，那么 $4-x^2=4-4\sin^2 t=4\cos^2 t$，开方后根号就消失了。去根号以后剩下 $\cos^2 t$，用降次公式把它变成 $t$ 的一次式，就能逐项积分。最后的关键是换回 $x$：画一个直角边为 $x$、斜边为 $2$ 的直角三角形，读出 $\cos t$ 的表达式。
+@@SOLUTION
+被积函数要有意义，需要 $4-x^2\geq 0$，即 $-2\leq x\leq 2$。
+第一步：换元。令
+$$x=2\sin t,\qquad t\in\left[-\frac{\pi}{2},\frac{\pi}{2}\right]$$
+两边微分得
+$$dx=2\cos t\,dt$$
+并且
+$$\sqrt{4-x^2}=\sqrt{4-4\sin^2 t}=\sqrt{4(1-\sin^2 t)}=\sqrt{4\cos^2 t}=2|\cos t|$$
+因为 $t\in\left[-\frac{\pi}{2},\frac{\pi}{2}\right]$ 时 $\cos t\geq 0$，所以 $|\cos t|=\cos t$，即
+$$\sqrt{4-x^2}=2\cos t$$
+第二步：代入并把根号积掉。
+$$\int\sqrt{4-x^2}\,dx=\int 2\cos t\cdot 2\cos t\,dt=4\int\cos^2 t\,dt$$
+第三步：用降次公式 $\cos^2 t=\frac{1+\cos 2t}{2}$：
+$$4\int\cos^2 t\,dt=4\int\frac{1+\cos 2t}{2}\,dt=2\int(1+\cos 2t)\,dt$$
+逐项积分（注意 $\int\cos 2t\,dt=\frac{\sin 2t}{2}$）：
+$$2\int(1+\cos 2t)\,dt=2\left(t+\frac{\sin 2t}{2}\right)+C=2t+\sin 2t+C$$
+再用 $\sin 2t=2\sin t\cos t$：
+$$\int\sqrt{4-x^2}\,dx=2t+2\sin t\cos t+C$$
+第四步：换回 $x$。由 $x=2\sin t$ 得
+$$\sin t=\frac{x}{2},\qquad t=\arcsin\frac{x}{2}$$
+再画直角三角形：斜边为 $2$、对边为 $x$，由勾股定理邻边为 $\sqrt{4-x^2}$，于是
+$$\cos t=\frac{\sqrt{4-x^2}}{2}$$
+代入得
+$$\int\sqrt{4-x^2}\,dx=2\arcsin\frac{x}{2}+2\cdot\frac{x}{2}\cdot\frac{\sqrt{4-x^2}}{2}+C=2\arcsin\frac{x}{2}+\frac{x\sqrt{4-x^2}}{2}+C$$
+验算：分别对两项求导。
+第一项用链式法则（外层 $\arcsin u$ 的导数是 $\frac{1}{\sqrt{1-u^2}}$，内层 $u=\frac{x}{2}$，$u'=\frac{1}{2}$）：
+$$\left(2\arcsin\frac{x}{2}\right)'=2\cdot\frac{1}{\sqrt{1-\frac{x^2}{4}}}\cdot\frac{1}{2}=\frac{1}{\sqrt{\frac{4-x^2}{4}}}=\frac{2}{\sqrt{4-x^2}}$$
+第二项用乘积法则：
+$$\left(\frac{x\sqrt{4-x^2}}{2}\right)'=\frac{1}{2}\left[\sqrt{4-x^2}+x\cdot\frac{-2x}{2\sqrt{4-x^2}}\right]=\frac{1}{2}\cdot\frac{(4-x^2)-x^2}{\sqrt{4-x^2}}=\frac{2-x^2}{\sqrt{4-x^2}}$$
+两项相加：
+$$\frac{2}{\sqrt{4-x^2}}+\frac{2-x^2}{\sqrt{4-x^2}}=\frac{2+2-x^2}{\sqrt{4-x^2}}=\frac{4-x^2}{\sqrt{4-x^2}}=\sqrt{4-x^2}$$
+求导结果与被积函数相同，答案正确。
+@@ANSWER
+$2\arcsin\frac{x}{2}+\frac{x}{2}\sqrt{4-x^2}+C$
+@@PITFALL
+三处最容易错：① 只把 $\sqrt{4-x^2}$ 换成 $2\cos t$，却忘记把 $dx$ 换成 $2\cos t\,dt$，导致答案少一个因子；② 处理 $\sqrt{4\cos^2 t}=2|\cos t|$ 时没有说明 $\cos t\geq 0$，直接写 $2\cos t$ 可能带上错误符号，所以必须写清 $t$ 的取值范围；③ 换回 $x$ 时忘记把 $t$ 换成 $\arcsin\frac{x}{2}$，答案里还留着 $t$，或者把 $\cos t$ 错写成 $\frac{x}{2}$。
+@@TIPS
+以后看到 $\sqrt{a^2-x^2}$ 出现在被积函数里（无论分子还是分母，例如 $\int\frac{dx}{\sqrt{4-x^2}}$、$\int x^2\sqrt{1-x^2}\,dx$），一律令 $x=a\sin t$。判断标准很简单：根号下是"常数减 $x^2$"，就用正弦代换。
+@@SUMMARY
+看到 $\sqrt{a^2-x^2}$ → 令 $x=a\sin t$ → 根号变成 $a\cos t$ → 算完画直角三角形换回 $x$。
+@@ENDPROBLEM
+
+@@PROBLEM id=6.2-2 type=变式 star=★★ time=8分钟 imp=★★★★★ kp=积分/三角代换
+@@STEM
+求不定积分 $\int \frac{1}{\sqrt{x^2+4}}\,dx$。（专项训练原创题）
+@@POINT
+三角代换：$\sqrt{x^2+a^2}$ 型，令 $x=a\tan t$，把根号变成 $a\sec t$。
+@@IDENTIFY
+看到根号下是"$x^2$ 加常数"，即 $\sqrt{x^2+a^2}$（本题 $a=2$），而且根号在分母上 → 属于三角代换题 → 用"令 $x=a\tan t$，$dx=a\sec^2 t\,dt$，$\sqrt{x^2+a^2}=a\sec t$"，化到 $\int\sec t\,dt$。
+@@FORMULAS
+1. $\sqrt{x^2+a^2}$ 型：令 $x=a\tan t$，则 $dx=a\sec^2 t\,dt$，$\sqrt{x^2+a^2}=a\sec t$
+2. $1+\tan^2 t=\sec^2 t$
+3. $\int\sec t\,dt=\ln|\sec t+\tan t|+C$
+@@IDEA
+根号下是 $x^2+4$，与恒等式 $1+\tan^2 t=\sec^2 t$ 的结构一致：只要令 $x=2\tan t$，就有 $x^2+4=4\tan^2 t+4=4\sec^2 t$，开方得 $2\sec t$。与此同时 $dx=2\sec^2 t\,dt$，分子分母里的 $\sec$ 恰好能约掉一个，积分就变成基本的 $\int\sec t\,dt$。算完再用直角三角形把 $\sec t$ 与 $\tan t$ 换回 $x$。
+@@SOLUTION
+第一步：换元。令
+$$x=2\tan t,\qquad t\in\left(-\frac{\pi}{2},\frac{\pi}{2}\right)$$
+两边微分得
+$$dx=2\sec^2 t\,dt$$
+并且
+$$\sqrt{x^2+4}=\sqrt{4\tan^2 t+4}=\sqrt{4(\tan^2 t+1)}=\sqrt{4\sec^2 t}=2|\sec t|$$
+因为 $t\in\left(-\frac{\pi}{2},\frac{\pi}{2}\right)$ 时 $\cos t>0$，所以 $\sec t=\frac{1}{\cos t}>0$，即
+$$\sqrt{x^2+4}=2\sec t$$
+第二步：代入原积分。
+$$\int\frac{1}{\sqrt{x^2+4}}\,dx=\int\frac{1}{2\sec t}\cdot 2\sec^2 t\,dt=\int\sec t\,dt$$
+第三步：用基本公式 $\int\sec t\,dt=\ln|\sec t+\tan t|+C$：
+$$\int\sec t\,dt=\ln|\sec t+\tan t|+C$$
+第四步：换回 $x$。由 $x=2\tan t$ 得 $\tan t=\frac{x}{2}$；画直角三角形，邻边为 $2$、对边为 $x$，由勾股定理斜边为 $\sqrt{x^2+4}$，于是
+$$\sec t=\frac{\sqrt{x^2+4}}{2}$$
+代入得
+$$\int\frac{1}{\sqrt{x^2+4}}\,dx=\ln\left|\frac{\sqrt{x^2+4}}{2}+\frac{x}{2}\right|+C=\ln\left|\sqrt{x^2+4}+x\right|-\ln 2+C$$
+由于 $-\ln 2$ 是常数，把它并入积分常数 $C$，并注意 $\sqrt{x^2+4}+x>0$，得到
+$$\int\frac{1}{\sqrt{x^2+4}}\,dx=\ln\left(x+\sqrt{x^2+4}\right)+C$$
+验算：对 $\ln\left(x+\sqrt{x^2+4}\right)$ 求导，外层是对数函数、内层 $u=x+\sqrt{x^2+4}$，由链式法则
+$$\left(\ln\left(x+\sqrt{x^2+4}\right)\right)'=\frac{1}{x+\sqrt{x^2+4}}\cdot\left(1+\frac{x}{\sqrt{x^2+4}}\right)$$
+把括号内通分：
+$$1+\frac{x}{\sqrt{x^2+4}}=\frac{\sqrt{x^2+4}+x}{\sqrt{x^2+4}}$$
+代入得
+$$\frac{1}{x+\sqrt{x^2+4}}\cdot\frac{\sqrt{x^2+4}+x}{\sqrt{x^2+4}}=\frac{1}{\sqrt{x^2+4}}$$
+求导结果与被积函数相同，答案正确。
+@@ANSWER
+$\ln\left(x+\sqrt{x^2+4}\right)+C$
+@@PITFALL
+容易错的地方：① 忘记 $dx=2\sec^2 t\,dt$ 中的 $\sec^2$，只在根号上做替换，导致积分算不下去；② 化 $\sqrt{4\sec^2 t}$ 时漏写绝对值，必须先说明 $\sec t>0$ 才能直接写成 $2\sec t$；③ 换回 $x$ 时把 $\sec t$ 写成 $\frac{x}{2}$（那是 $\tan t$），正确是 $\frac{\sqrt{x^2+4}}{2}$，两者用三角形一画就分得清；④ 丢掉 $\ln$ 里的加法项，写成 $\ln\sqrt{x^2+4}+C$，那样求导得不到原函数。
+@@TIPS
+以后看到 $\sqrt{x^2+a^2}$ 出现在分母（例如 $\int\frac{dx}{\sqrt{x^2+1}}$、$\int\frac{dx}{x^2\sqrt{x^2+1}}$），一律令 $x=a\tan t$。若根号在分子上（例如 $\int\sqrt{x^2+4}\,dx$），同样先用 $x=a\tan t$ 去根号，之后再用分部积分处理 $\sec^3 t$。
+@@SUMMARY
+看到 $\sqrt{x^2+a^2}$ → 令 $x=a\tan t$ → 根号变成 $a\sec t$ → 换回 $x$ 时画三角形读出 $\sec t$。
+@@ENDPROBLEM
+
+@@PROBLEM id=6.2-3 type=变式 star=★★ time=8分钟 imp=★★★★★ kp=积分/三角代换
+@@STEM
+求不定积分 $\int \frac{1}{\sqrt{x^2-4}}\,dx$（$x>2$）。（专项训练原创题）
+@@POINT
+三角代换：$\sqrt{x^2-a^2}$ 型，令 $x=a\sec t$，把根号变成 $a\tan t$。
+@@IDENTIFY
+看到根号下是"$x^2$ 减常数"，即 $\sqrt{x^2-a^2}$（本题 $a=2$），且根号在分母上 → 属于三角代换题 → 用"令 $x=a\sec t$，$dx=a\sec t\tan t\,dt$，$\sqrt{x^2-a^2}=a\tan t$"，化到 $\int\sec t\,dt$。
+@@FORMULAS
+1. $\sqrt{x^2-a^2}$ 型：令 $x=a\sec t$，则 $dx=a\sec t\tan t\,dt$，$\sqrt{x^2-a^2}=a\tan t$
+2. $\sec^2 t-1=\tan^2 t$
+3. $\int\sec t\,dt=\ln|\sec t+\tan t|+C$
+@@IDEA
+本题与上一题是"同一招、改形式"：根号下由加号改成减号，就要用恒等式 $\sec^2 t-1=\tan^2 t$。令 $x=2\sec t$，则 $x^2-4=4(\sec^2 t-1)=4\tan^2 t$，开方得 $2\tan t$；分子分母中的 $\tan t$ 约掉，同样落到基本积分 $\int\sec t\,dt$，最后画三角形把 $\sec t$ 与 $\tan t$ 换回 $x$。
+@@SOLUTION
+第一步：换元。因为 $x>2$，可以取
+$$x=2\sec t,\qquad t\in\left(0,\frac{\pi}{2}\right)$$
+此时 $\sec t=\frac{1}{\cos t}>1$，恰好对应 $x>2$。两边微分得
+$$dx=2\sec t\tan t\,dt$$
+并且
+$$\sqrt{x^2-4}=\sqrt{4\sec^2 t-4}=\sqrt{4(\sec^2 t-1)}=\sqrt{4\tan^2 t}=2|\tan t|$$
+因为 $t\in\left(0,\frac{\pi}{2}\right)$ 时 $\tan t>0$，所以
+$$\sqrt{x^2-4}=2\tan t$$
+第二步：代入原积分。
+$$\int\frac{1}{\sqrt{x^2-4}}\,dx=\int\frac{1}{2\tan t}\cdot 2\sec t\tan t\,dt=\int\sec t\,dt$$
+第三步：用基本公式：
+$$\int\sec t\,dt=\ln|\sec t+\tan t|+C$$
+第四步：换回 $x$。由 $x=2\sec t$ 得 $\sec t=\frac{x}{2}$；由 $\tan^2 t=\sec^2 t-1=\frac{x^2}{4}-1=\frac{x^2-4}{4}$，且 $\tan t>0$，得
+$$\tan t=\frac{\sqrt{x^2-4}}{2}$$
+（也可以画直角三角形：斜边为 $x$、邻边为 $2$，由勾股定理对边为 $\sqrt{x^2-4}$。）代入得
+$$\int\frac{1}{\sqrt{x^2-4}}\,dx=\ln\left|\frac{x}{2}+\frac{\sqrt{x^2-4}}{2}\right|+C=\ln\left|x+\sqrt{x^2-4}\right|-\ln 2+C$$
+把常数 $-\ln 2$ 并入 $C$，并注意 $x>2$ 时 $x+\sqrt{x^2-4}>0$，得
+$$\int\frac{1}{\sqrt{x^2-4}}\,dx=\ln\left(x+\sqrt{x^2-4}\right)+C$$
+验算：对 $\ln\left(x+\sqrt{x^2-4}\right)$ 求导，外层是对数函数、内层 $u=x+\sqrt{x^2-4}$，由链式法则
+$$\left(\ln\left(x+\sqrt{x^2-4}\right)\right)'=\frac{1}{x+\sqrt{x^2-4}}\cdot\left(1+\frac{x}{\sqrt{x^2-4}}\right)$$
+括号内通分：
+$$1+\frac{x}{\sqrt{x^2-4}}=\frac{\sqrt{x^2-4}+x}{\sqrt{x^2-4}}$$
+代入得
+$$\frac{1}{x+\sqrt{x^2-4}}\cdot\frac{\sqrt{x^2-4}+x}{\sqrt{x^2-4}}=\frac{1}{\sqrt{x^2-4}}$$
+求导结果与被积函数相同，答案正确。
+@@ANSWER
+$\ln\left(x+\sqrt{x^2-4}\right)+C$
+@@PITFALL
+容易错的地方：① 把三个代换记混，写成 $x=2\sin t$ 或 $x=2\tan t$，那样 $x^2-4$ 会变成负数，根号无意义；② 忘记 $dx=2\sec t\tan t\,dt$，或把 $\tan$ 与 $\sec$ 的导数记错；③ 去掉 $\sqrt{4\tan^2 t}$ 的绝对值时没有说明 $\tan t>0$；④ 答案写成 $\ln|x-\sqrt{x^2-4}|+C$，那是把三角形的边读错，正确是"加号"；⑤ 遗漏定义域 $x>2$（或 $x<-2$）的说明。
+@@TIPS
+以后看到 $\sqrt{x^2-a^2}$ 一律令 $x=a\sec t$。三句口令可以这样对照记忆：根号下"常数减 $x^2$"用 $\sin$，"$x^2$ 加常数"用 $\tan$，"$x^2$ 减常数"用 $\sec$；前两个代换 $t$ 取在 $\left(-\frac{\pi}{2},\frac{\pi}{2}\right)$ 附近，第三个代换 $t$ 取在 $\left(0,\frac{\pi}{2}\right)$，这样三角函数都取正值。
+@@SUMMARY
+看到 $\sqrt{x^2-a^2}$ → 令 $x=a\sec t$ → 根号变成 $a\tan t$ → 答案 $\ln|x+\sqrt{x^2-a^2}|+C$。
+@@ENDPROBLEM
+
+@@PROBLEM id=6.2-4 type=变式 star=★★ time=6分钟 imp=★★★★ kp=积分/三角代换
+@@STEM
+求不定积分 $\int \frac{1}{1+\sqrt{x}}\,dx$（$x>0$）。（专项训练原创题）
+@@POINT
+根式整体代换（第二换元法：令整个根式等于 $t$），把含根式的积分化成有理函数积分。
+@@IDENTIFY
+看到被积函数里出现 $\sqrt{x}$ 这种"$n$ 次根号"，但根号下不是 $a^2-x^2$、$x^2\pm a^2$ 这些二次结构 → 不能用三角代换 → 用"令整个根式 $t=\sqrt{x}$，把 $x=t^2$、$dx=2t\,dt$ 一起换掉"的整体代换法。
+@@FORMULAS
+1. 整体代换：令 $t=\sqrt{x}$，则 $x=t^2$，$dx=2t\,dt$
+2. 假分式拆分：$\frac{t}{1+t}=1-\frac{1}{1+t}$
+3. $\int\frac{1}{1+t}\,dt=\ln|1+t|+C$
+@@IDEA
+根号 $\sqrt{x}$ 是拦路虎，三角代换对它完全不对路。最直接的想法是"把根号整体设成新变量"：令 $t=\sqrt{x}$，那么 $x=t^2$，$dx=2t\,dt$，被积函数变成 $\frac{2t}{1+t}$，这是一个有理函数。分子次数等于分母次数，先做假分式拆分 $\frac{t}{1+t}=1-\frac{1}{1+t}$，就能逐项积分。算完把 $t$ 换成 $\sqrt{x}$ 即可。
+@@SOLUTION
+第一步：换元。令
+$$t=\sqrt{x}\qquad(t>0)$$
+两边平方得
+$$x=t^2$$
+两边微分得
+$$dx=2t\,dt$$
+第二步：代入原积分。
+$$\int\frac{1}{1+\sqrt{x}}\,dx=\int\frac{1}{1+t}\cdot 2t\,dt=2\int\frac{t}{1+t}\,dt$$
+第三步：假分式拆分。因为
+$$\frac{t}{1+t}=\frac{(t+1)-1}{1+t}=1-\frac{1}{1+t}$$
+所以
+$$2\int\frac{t}{1+t}\,dt=2\int\left(1-\frac{1}{1+t}\right)dt=2\left(\int 1\,dt-\int\frac{1}{1+t}\,dt\right)$$
+逐项积分，注意 $\int\frac{1}{1+t}\,dt=\ln|1+t|+C$：
+$$2\int\left(1-\frac{1}{1+t}\right)dt=2\left(t-\ln|1+t|\right)+C$$
+因为 $t=\sqrt{x}>0$，所以 $1+t>0$，绝对值可以直接去掉：
+$$=2t-2\ln(1+t)+C$$
+第四步：换回 $x$。把 $t=\sqrt{x}$ 代入：
+$$\int\frac{1}{1+\sqrt{x}}\,dx=2\sqrt{x}-2\ln(1+\sqrt{x})+C$$
+验算：对 $2\sqrt{x}-2\ln(1+\sqrt{x})$ 逐项求导。
+第一项：$\left(2\sqrt{x}\right)'=2\cdot\frac{1}{2\sqrt{x}}=\frac{1}{\sqrt{x}}$。
+第二项用链式法则（外层是对数函数、内层 $u=1+\sqrt{x}$，$u'=\frac{1}{2\sqrt{x}}$）：
+$$\left(-2\ln(1+\sqrt{x})\right)'=-2\cdot\frac{1}{1+\sqrt{x}}\cdot\frac{1}{2\sqrt{x}}=-\frac{1}{\sqrt{x}(1+\sqrt{x})}$$
+两项相加：
+$$\frac{1}{\sqrt{x}}-\frac{1}{\sqrt{x}(1+\sqrt{x})}=\frac{(1+\sqrt{x})-1}{\sqrt{x}(1+\sqrt{x})}=\frac{\sqrt{x}}{\sqrt{x}(1+\sqrt{x})}=\frac{1}{1+\sqrt{x}}$$
+求导结果与被积函数相同，答案正确。
+@@ANSWER
+$2\sqrt{x}-2\ln(1+\sqrt{x})+C$
+@@PITFALL
+常见错误：① 换元时只把 $\sqrt{x}$ 换成 $t$，却把 $dx$ 仍当成 $dx$，没有换成 $2t\,dt$，答案必错；② 忘记把 $x$ 一并换成 $t^2$，出现 $\int\frac{2t}{1+t}dt$ 里混着 $x$ 的情况；③ 假分式不会拆，直接把 $\frac{2t}{1+t}$ 当成 $\frac{1}{1+t}$ 积；④ 最后忘记把 $t$ 换回 $\sqrt{x}$，答案里留着 $t$。
+@@TIPS
+以后看到被积函数含 $\sqrt{x}$、$\sqrt[3]{x}$、$\sqrt{x+1}$ 这类"根号下不是二次式"的结构，一律令整个根式等于 $t$：令 $t=\sqrt{x}$ 则 $x=t^2$，令 $t=\sqrt[3]{x}$ 则 $x=t^3$，令 $t=\sqrt{x+1}$ 则 $x=t^2-1$。换元的目的永远是"把根号彻底去掉，化成有理函数"。
+@@SUMMARY
+看到根号下不是二次式（如 $\sqrt{x}$）→ 令整个根式等于 $t$ → 把 $x$ 与 $dx$ 一起换成 $t$ 的表达式 → 化成有理函数再积分。
+@@ENDPROBLEM
+
+@@PROBLEM id=6.2-5 type=基础训练 star=★★ time=6分钟 imp=★★★★★ kp=积分/三角代换
+@@STEM
+求定积分 $\int_0^2 \sqrt{4-x^2}\,dx$。（专项训练原创题）
+@@POINT
+三角代换与定积分上下限的同步变换：用 $x=2\sin t$ 把上下限从 $x$ 的范围换成 $t$ 的范围。
+@@IDENTIFY
+看到定积分的被积函数是 $\sqrt{4-x^2}$、积分区间是 $0$ 到 $2$ → 属于三角代换题 → 用"令 $x=2\sin t$，把上下限 $x=0,2$ 换成 $t=0,\frac{\pi}{2}$，换元后直接在新上下限上算，不再换回 $x$"的方法。
+@@FORMULAS
+1. 定积分换元：$\int_a^b f(x)\,dx=\int_{\alpha}^{\beta} f(\varphi(t))\varphi'(t)\,dt$，其中 $a=\varphi(\alpha)$，$b=\varphi(\beta)$
+2. 降次公式 $\cos^2 t=\frac{1+\cos 2t}{2}$
+3. $\int\cos^2 t\,dt=\frac{t}{2}+\frac{\sin 2t}{4}+C$
+@@IDEA
+这题就是母题的定积分版本，唯一的新内容是"上下限怎么变"。定积分换元以后，积分的上下限必须跟着换成新变量 $t$ 的范围；只要上下限换对了，就不需要再把 $t$ 换回 $x$，直接在新上下限上算到底，这样反而更快。换元前先算：$x=0$ 时 $2\sin t=0$，取 $t=0$；$x=2$ 时 $2\sin t=2$，即 $\sin t=1$，取 $t=\frac{\pi}{2}$。
+@@SOLUTION
+第一步：换元并换上下限。令
+$$x=2\sin t,\qquad t\in\left[0,\frac{\pi}{2}\right]$$
+则
+$$dx=2\cos t\,dt,\qquad \sqrt{4-x^2}=2\cos t$$
+（$t\in\left[0,\frac{\pi}{2}\right]$ 时 $\cos t\geq 0$，所以绝对值可以直接去掉。）
+上下限的变化：当 $x=0$ 时，由 $0=2\sin t$ 得 $\sin t=0$，取 $t=0$；当 $x=2$ 时，由 $2=2\sin t$ 得 $\sin t=1$，取 $t=\frac{\pi}{2}$。
+所以 $x$ 从 $0$ 变到 $2$，对应 $t$ 从 $0$ 变到 $\frac{\pi}{2}$。
+第二步：代入并计算。
+$$\int_0^2\sqrt{4-x^2}\,dx=\int_0^{\frac{\pi}{2}}2\cos t\cdot 2\cos t\,dt=4\int_0^{\frac{\pi}{2}}\cos^2 t\,dt$$
+第三步：用降次公式并代入上下限。
+$$4\int_0^{\frac{\pi}{2}}\cos^2 t\,dt=4\int_0^{\frac{\pi}{2}}\frac{1+\cos 2t}{2}\,dt=2\int_0^{\frac{\pi}{2}}(1+\cos 2t)\,dt$$
+由 $\int 1\,dt=t$ 与 $\int\cos 2t\,dt=\frac{\sin 2t}{2}$，得原函数
+$$2\left(t+\frac{\sin 2t}{2}\right)$$
+代入上下限：在 $t=\frac{\pi}{2}$ 处，
+$$2\left(\frac{\pi}{2}+\frac{\sin \pi}{2}\right)=2\cdot\frac{\pi}{2}=\pi$$
+在 $t=0$ 处，
+$$2\left(0+\frac{\sin 0}{2}\right)=0$$
+所以
+$$\int_0^2\sqrt{4-x^2}\,dx=\pi-0=\pi$$
+验算：从几何上看，$\sqrt{4-x^2}$ 是半径为 $2$ 的圆的上半支，积分区间 $0$ 到 $2$ 恰好是四分之一圆，其面积为 $\frac{1}{4}\pi\cdot 2^2=\pi$，与计算结果一致，答案正确。
+@@ANSWER
+$\pi$
+@@PITFALL
+最容易错的是"上下限忘记换"：换元后仍写 $\int_0^2$，把 $t$ 的上限当成 $2$ 代入 $2\left(t+\frac{\sin 2t}{2}\right)$，会算出完全错误的结果。第二个错误是换元后把 $t$ 又换回 $x$ 却用了新上下限，两套变量混用。第三个错误是 $dx$ 忘记换成 $2\cos t\,dt$，导致答案差一个因子。
+@@TIPS
+做定积分的换元题，动笔前先在草稿纸边上写出三行："$x=\ ?$"、"$dx=\ ?\,dt$"、"$x=a\Rightarrow t=\alpha$，$x=b\Rightarrow t=\beta$"。三行写全再算，就不会漏。能用几何意义（圆、三角形面积）检查的定积分，一定顺手检查一下。
+@@SUMMARY
+定积分三角代换 → 换元的同时必须把上下限换成 $t$ 的范围 → 新上下限上直接算完，不必换回 $x$。
+@@ENDPROBLEM
+
+@@PROBLEM id=6.2-6 type=提高训练 star=★★★ time=10分钟 imp=★★★★ kp=积分/三角代换
+@@STEM
+求不定积分 $\int \frac{1}{x^2\sqrt{x^2+1}}\,dx$（$x>0$）。（根据 CMC 常见题型改编）
+@@POINT
+三角代换与三角恒等变形的综合：用 $x=\tan t$ 去根号后，还要再用一次凑微分把 $\tan$、$\sec$ 化简掉。
+@@IDENTIFY
+看到根号下是 $x^2+1$（即 $\sqrt{x^2+a^2}$ 型，$a=1$），同时外面还有因子 $\frac{1}{x^2}$ → 属于三角代换的综合题 → 用"令 $x=\tan t$ 去根号，把 $\tan t$、$\sec t$ 全部化成 $\sin t$、$\cos t$，再用凑微分 $\int\frac{\cos t}{\sin^2 t}dt$"的方法。
+@@FORMULAS
+1. $\sqrt{x^2+a^2}$ 型：令 $x=a\tan t$，则 $dx=a\sec^2 t\,dt$，$\sqrt{x^2+a^2}=a\sec t$
+2. $\tan t=\frac{\sin t}{\cos t}$，$\sec t=\frac{1}{\cos t}$，$1+\tan^2 t=\sec^2 t$
+3. $\int u^{-2}\,du=-\frac{1}{u}+C$，即 $\int\frac{\cos t}{\sin^2 t}\,dt$ 令 $u=\sin t$ 后为 $-\frac{1}{\sin t}+C$
+@@IDEA
+根号 $\sqrt{x^2+1}$ 用 $x=\tan t$ 就能消掉，这一步和前面的变式一样。真正的新内容是：去掉根号之后被积函数变成 $\frac{\sec^2 t}{\tan^2 t\sec t}$，里面同时有 $\sec$、$\tan$，必须把它们统一写成 $\sin$、$\cos$ 才能看清结构。统一之后会发现被积函数是 $\frac{\cos t}{\sin^2 t}$，而分子 $\cos t$ 恰好是 $\sin t$ 的导数，于是再用一次凑微分（令 $u=\sin t$）就能积出来。最后画直角三角形把 $\frac{1}{\sin t}$ 换成 $\frac{\sqrt{x^2+1}}{x}$。
+@@SOLUTION
+第一步：换元去根号。令
+$$x=\tan t,\qquad t\in\left(0,\frac{\pi}{2}\right)$$
+（因为 $x>0$，对应的 $t$ 在 $(0,\frac{\pi}{2})$ 内，此时 $\sin t$、$\cos t$ 均为正。）
+两边微分得
+$$dx=\sec^2 t\,dt$$
+并且由 $1+\tan^2 t=\sec^2 t$ 得
+$$\sqrt{x^2+1}=\sqrt{\tan^2 t+1}=\sec t$$
+同时
+$$x^2=\tan^2 t$$
+第二步：代入原积分。
+$$\int\frac{1}{x^2\sqrt{x^2+1}}\,dx=\int\frac{1}{\tan^2 t\cdot\sec t}\cdot\sec^2 t\,dt=\int\frac{\sec^2 t}{\tan^2 t\sec t}\,dt=\int\frac{\sec t}{\tan^2 t}\,dt$$
+第三步：把 $\sec t$、$\tan t$ 统一写成 $\sin t$、$\cos t$：
+$$\frac{\sec t}{\tan^2 t}=\frac{\frac{1}{\cos t}}{\left(\frac{\sin t}{\cos t}\right)^2}=\frac{1}{\cos t}\cdot\frac{\cos^2 t}{\sin^2 t}=\frac{\cos t}{\sin^2 t}$$
+所以
+$$\int\frac{\sec t}{\tan^2 t}\,dt=\int\frac{\cos t}{\sin^2 t}\,dt$$
+第四步：再凑一次微分。令
+$$u=\sin t,\qquad du=\cos t\,dt$$
+则
+$$\int\frac{\cos t}{\sin^2 t}\,dt=\int\frac{1}{u^2}\,du=\int u^{-2}\,du=-u^{-1}+C=-\frac{1}{u}+C$$
+换回 $t$：
+$$\int\frac{\cos t}{\sin^2 t}\,dt=-\frac{1}{\sin t}+C$$
+第五步：换回 $x$。画直角三角形：对边为 $x$、邻边为 $1$，由勾股定理斜边为 $\sqrt{x^2+1}$，于是
+$$\sin t=\frac{x}{\sqrt{x^2+1}}$$
+代入得
+$$\int\frac{1}{x^2\sqrt{x^2+1}}\,dx=-\frac{1}{\frac{x}{\sqrt{x^2+1}}}+C=-\frac{\sqrt{x^2+1}}{x}+C$$
+验算：对 $-\frac{\sqrt{x^2+1}}{x}$ 求导，先把它看成 $-\frac{u}{x}$ 且 $u=\sqrt{x^2+1}$，用商的求导法则
+$$\left(\frac{u}{x}\right)'=\frac{u'\cdot x-u\cdot 1}{x^2}$$
+其中由链式法则
+$$u'=\left(\sqrt{x^2+1}\right)'=\frac{1}{2\sqrt{x^2+1}}\cdot 2x=\frac{x}{\sqrt{x^2+1}}$$
+代入：
+$$\left(\frac{\sqrt{x^2+1}}{x}\right)'=\frac{\frac{x}{\sqrt{x^2+1}}\cdot x-\sqrt{x^2+1}}{x^2}=\frac{\frac{x^2}{\sqrt{x^2+1}}-\sqrt{x^2+1}}{x^2}=\frac{\frac{x^2-(x^2+1)}{\sqrt{x^2+1}}}{x^2}=\frac{-1}{x^2\sqrt{x^2+1}}$$
+所以
+$$\left(-\frac{\sqrt{x^2+1}}{x}\right)'=\frac{1}{x^2\sqrt{x^2+1}}$$
+求导结果与被积函数相同，答案正确。
+@@ANSWER
+$-\frac{\sqrt{x^2+1}}{x}+C$
+@@PITFALL
+容易错的地方：① 只换 $x=\tan t$ 却忘记 $dx=\sec^2 t\,dt$，或者把 $\sqrt{\tan^2 t+1}$ 当成 $\tan t+1$，这是把开方当成了加减；② 第三步不把 $\sec$、$\tan$ 统一成 $\sin$、$\cos$，直接对着 $\frac{\sec t}{\tan^2 t}$ 发呆，其实约分以后就是 $\frac{\cos t}{\sin^2 t}$；③ 第二次凑微分时令 $u=\cos t$（应该是 $u=\sin t$），导致 $\int\frac{\cos t}{\sin^2 t}dt$ 凑不出来；④ 换回 $x$ 时把 $\sin t$ 写成 $\frac{1}{x}$，正确是 $\frac{x}{\sqrt{x^2+1}}$。
+@@TIPS
+三角代换题的通用流程固定为五步：换元 → 换 $dx$ → 去根号 → 把三角函数统一成 $\sin$、$\cos$ 并凑微分 → 画三角形换回 $x$。凡是被积函数里出现 $\sec^n t$、$\tan^m t$ 混合的形式，第一步永远是"统一成 $\sin$、$\cos$"再看有没有可凑的导数。
+@@SUMMARY
+看到 $\sqrt{x^2+a^2}$ 与 $\frac{1}{x^2}$ 同时出现 → 令 $x=a\tan t$ → 去根号后把 $\sec$、$\tan$ 统一成 $\sin$、$\cos$ → 再凑一次微分。
+@@ENDPROBLEM
+
+@@SECTION 6.3 题型三 分部积分法
+
+@@METHOD
+分部积分法做的事情是"把不会算的积分换成一个更简单的积分"，公式是 $\int u\,dv=uv-\int v\,du$。
+- 使用时机：被积函数是两类不同函数相乘（幂函数乘指数、幂函数乘对数、幂函数乘三角、指数乘三角），或者被积函数是 $\ln x$、$\arctan x$、$\arcsin x$ 这类"单独出现但直接积不出来"的函数。
+- 取 $u$ 的口诀：反、对、幂、三、指。排在前面的取作 $u$，排在后面的连同 $dx$ 一起取作 $dv$。
+- 操作只有四步：定 $u$ 与 $dv$ → 求 $du$ 与 $v$ → 代公式 → 算剩下的 $\int v\,du$。
+- 检验标准：换出来的 $\int v\,du$ 必须比原来的 $\int u\,dv$ 更简单。如果新积分反而更复杂，说明 $u$ 与 $dv$ 取反了，要重取。
+- 遇到 $\int e^x\sin x\,dx$、$\int e^x\cos x\,dx$ 这类"循环型"，用两次分部积分后等号右边会重新出现原积分，把原积分当成未知数解方程即可。
+@@METHODEND
+
+@@PROBLEM id=6.3-1 type=母题 star=★★ time=6分钟 imp=★★★★★ kp=积分/分部积分
+@@STEM
+求不定积分 $\int x e^x\,dx$。（专项训练原创题）
+@@POINT
+分部积分公式 $\int u\,dv=uv-\int v\,du$ 的基本用法："幂函数乘指数函数"型的取 $u$ 规则。
+@@IDENTIFY
+看到被积函数是"幂函数 $x$ 乘指数函数 $e^x$"这种两类不同函数相乘的结构 → 属于分部积分题 → 用"按'反、对、幂、三、指'口诀取 $u=x$，剩下的 $e^x\,dx$ 取作 $dv$"的方法。
+@@FORMULAS
+1. 分部积分公式 $\int u\,dv=uv-\int v\,du$
+2. $\int e^x\,dx=e^x+C$
+3. 取 $u$ 的口诀：反、对、幂、三、指（排在前面的当 $u$）
+@@IDEA
+$x e^x$ 是两个函数相乘，没有现成的积分公式可以套。分部积分的想法是"把其中一个因子移进微分号里"，用公式把原积分换成一个新积分。取谁当 $u$ 是本题的关键：$u$ 求导之后必须变简单。$x$ 求导得常数 $1$，确实变简单了；而 $e^x$ 求导仍是 $e^x$，不会简化。所以取 $u=x$、$dv=e^x\,dx$，这样剩下的积分是 $\int e^x\,dx$，比原来的 $\int x e^x\,dx$ 简单。
+@@SOLUTION
+第一步：确定 $u$ 与 $dv$。按口诀"幂函数排在对数、三角、指数之前"，本题中幂函数优先，取
+$$u=x,\qquad dv=e^x\,dx$$
+第二步：求 $du$ 与 $v$。对 $u=x$ 求导得
+$$du=dx$$
+对 $dv=e^x\,dx$ 积分得
+$$v=\int e^x\,dx=e^x$$
+（求 $v$ 时不写积分常数，常数最后统一加在答案里。）
+第三步：代入分部积分公式 $\int u\,dv=uv-\int v\,du$，得
+$$\int x e^x\,dx=x\cdot e^x-\int e^x\cdot 1\,dx$$
+第四步：算剩下的积分：
+$$\int e^x\,dx=e^x+C_1$$
+代回得
+$$\int x e^x\,dx=x e^x-e^x+C=(x-1)e^x+C$$
+验算：对 $(x-1)e^x$ 求导。用乘积求导法则 $(fg)'=f'g+fg'$，取 $f=x-1$，$g=e^x$：
+$$\left((x-1)e^x\right)'=(x-1)'\cdot e^x+(x-1)\cdot(e^x)'=1\cdot e^x+(x-1)e^x$$
+把公因子 $e^x$ 提出：
+$$e^x\left(1+x-1\right)=x e^x$$
+求导结果与被积函数相同，答案正确。
+@@ANSWER
+$(x-1)e^x+C$
+@@PITFALL
+两个典型错误：① $u$ 与 $dv$ 取反，令 $u=e^x$、$dv=x\,dx$，于是 $v=\frac{x^2}{2}$，代入公式得 $\frac{x^2}{2}e^x-\int\frac{x^2}{2}e^x\,dx$，新积分里的幂次从 $x$ 升到 $x^2$，越算越难；② 求 $v$ 时额外添了一个积分常数，答案里多出 $C e^x$ 这样的项，虽然它可以被并进常数 $C$，但过程不干净、容易算错。此外漏写最后的 $+C$ 按错处理。
+@@TIPS
+以后看到"幂函数 × 指数函数"、"幂函数 × 三角函数"、"幂函数 × 对数函数"、"幂函数 × 反三角函数"，都是分部积分的信号。取 $u$ 一律按"反、对、幂、三、指"的顺序：$\int x^2 e^x\,dx$ 取 $u=x^2$（要用两次分部积分），$\int x\ln x\,dx$ 取 $u=\ln x$，$\int x\arctan x\,dx$ 取 $u=\arctan x$。
+@@SUMMARY
+看到"幂函数 × 指数（或三角）"→ 取幂函数当 $u$、指数（三角）当 $dv$ → 每用一次分部积分幂次就降一次。
+@@ENDPROBLEM
+
+@@PROBLEM id=6.3-2 type=变式 star=★★ time=6分钟 imp=★★★★★ kp=积分/分部积分
+@@STEM
+求不定积分 $\int x\ln x\,dx$（$x>0$）。（专项训练原创题）
+@@POINT
+分部积分：把幂函数乘对数函数的题，按"反、对、幂、三、指"取对数函数当 $u$。
+@@IDENTIFY
+看到被积函数是"幂函数 $x$ 乘对数函数 $\ln x$"→ 属于分部积分题 → 用"对数函数排在前，取 $u=\ln x$，剩下的 $x\,dx$ 取作 $dv$"的方法。
+@@FORMULAS
+1. 分部积分公式 $\int u\,dv=uv-\int v\,du$
+2. $(\ln x)'=\frac{1}{x}$
+3. $\int x\,dx=\frac{x^2}{2}+C$
+@@IDEA
+本题与母题的差别在于"乘的是对数函数而不是指数函数"。取 $u$ 的原则仍然是"求导后变简单的那部分当 $u$"：$x$ 求导得 $1$，看起来也变简单了，但 $\ln x$ 直接积不出来（只有求导才变简单，$(\ln x)'=\frac{1}{x}$ 变成代数式）。所以必须取 $u=\ln x$、$dv=x\,dx$，这样剩下的积分是 $\int\frac{1}{x}\cdot\frac{x^2}{2}dx=\int\frac{x}{2}dx$，是个简单的幂函数积分。
+@@SOLUTION
+第一步：确定 $u$ 与 $dv$。取
+$$u=\ln x,\qquad dv=x\,dx$$
+第二步：求 $du$ 与 $v$。由 $(\ln x)'=\frac{1}{x}$ 得
+$$du=\frac{1}{x}\,dx$$
+由幂函数积分公式得
+$$v=\int x\,dx=\frac{x^2}{2}$$
+第三步：代入分部积分公式 $\int u\,dv=uv-\int v\,du$：
+$$\int x\ln x\,dx=\ln x\cdot\frac{x^2}{2}-\int\frac{x^2}{2}\cdot\frac{1}{x}\,dx$$
+第四步：算剩下的积分。先约掉一个 $x$：
+$$\frac{x^2}{2}\cdot\frac{1}{x}=\frac{x}{2}$$
+所以
+$$\int\frac{x^2}{2}\cdot\frac{1}{x}\,dx=\int\frac{x}{2}\,dx=\frac{1}{2}\cdot\frac{x^2}{2}+C_1=\frac{x^2}{4}+C_1$$
+代回得
+$$\int x\ln x\,dx=\frac{x^2}{2}\ln x-\frac{x^2}{4}+C$$
+验算：对 $\frac{x^2}{2}\ln x-\frac{x^2}{4}$ 逐项求导。
+第一项用乘积求导法则，取 $f=\frac{x^2}{2}$，$g=\ln x$：
+$$\left(\frac{x^2}{2}\ln x\right)'=\left(\frac{x^2}{2}\right)'\ln x+\frac{x^2}{2}\cdot(\ln x)'=x\ln x+\frac{x^2}{2}\cdot\frac{1}{x}=x\ln x+\frac{x}{2}$$
+第二项：$\left(\frac{x^2}{4}\right)'=\frac{2x}{4}=\frac{x}{2}$。
+两项相减：
+$$\left(x\ln x+\frac{x}{2}\right)-\frac{x}{2}=x\ln x$$
+求导结果与被积函数相同，答案正确。
+@@ANSWER
+$\frac{x^2}{2}\ln x-\frac{x^2}{4}+C$
+@@PITFALL
+最常见的错误是把 $u$ 与 $dv$ 取反，令 $u=x$、$dv=\ln x\,dx$，可是 $\int\ln x\,dx$ 本身还要再分部积分一次，绕远路且容易出错。第二个错误是第二项的系数算错：$\int\frac{x}{2}dx$ 的结果是 $\frac{x^2}{4}$ 而不是 $\frac{x^2}{2}$，凡是幂函数积分，指数加一之后一定要记得除以新的指数。第三个错误是把 $(\ln x)'$ 记成 $\frac{1}{x\ln x}$ 或 $\ln x$。
+@@TIPS
+以后看到"幂函数 × 对数函数"、"幂函数 × 反三角函数"，一律让对数、反三角当 $u$（因为它们求导后变成代数式，能约分）。这类题的答案通常长得像"原幂函数升一次幂 × 对数 − 一个纯幂函数"。
+@@SUMMARY
+看到"幂函数 × 对数（或反三角）"→ 取对数（反三角）当 $u$、幂函数当 $dv$。
+@@ENDPROBLEM
+
+@@PROBLEM id=6.3-3 type=变式 star=★★ time=6分钟 imp=★★★★★ kp=积分/分部积分
+@@STEM
+求不定积分 $\int \ln x\,dx$（$x>0$）。（专项训练原创题）
+@@POINT
+分部积分：被积函数"只有一个因子"时，自己补上因子 $1$，把 $dx$ 取作 $dv$。
+@@IDENTIFY
+看到被积函数是单独的 $\ln x$（不是乘积），而且没有现成的基本积分公式 → 属于分部积分题 → 用"把 $\ln x$ 看成 $\ln x\cdot 1$，取 $u=\ln x$、$dv=dx$"的方法。
+@@FORMULAS
+1. 分部积分公式 $\int u\,dv=uv-\int v\,du$
+2. $(\ln x)'=\frac{1}{x}$
+3. $\int 1\,dx=x+C$
+@@IDEA
+公式 $\int u\,dv=uv-\int v\,du$ 要求被积函数是两个因子的乘积。$\ln x$ 单独出现时，可以把它写成 $\ln x\cdot 1$，于是 $u=\ln x$、$dv=1\cdot dx=dx$，公式照样能用。求 $v$ 时注意 $\int 1\,dx=x$；代公式后剩下的积分是 $\int x\cdot\frac{1}{x}dx=\int 1\,dx$，正好是最简单的积分。
+@@SOLUTION
+第一步：把被积函数补成乘积形式，并确定 $u$ 与 $dv$：
+$$\int\ln x\,dx=\int\ln x\cdot 1\,dx$$
+取
+$$u=\ln x,\qquad dv=dx$$
+第二步：求 $du$ 与 $v$：
+$$du=\frac{1}{x}\,dx,\qquad v=\int 1\,dx=x$$
+第三步：代入分部积分公式 $\int u\,dv=uv-\int v\,du$：
+$$\int\ln x\,dx=\ln x\cdot x-\int x\cdot\frac{1}{x}\,dx$$
+第四步：算剩下的积分。先约分：
+$$x\cdot\frac{1}{x}=1$$
+所以
+$$\int x\cdot\frac{1}{x}\,dx=\int 1\,dx=x+C_1$$
+代回得
+$$\int\ln x\,dx=x\ln x-x+C$$
+验算：对 $x\ln x-x$ 求导。第一项用乘积求导法则，取 $f=x$，$g=\ln x$：
+$$(x\ln x)'=1\cdot\ln x+x\cdot\frac{1}{x}=\ln x+1$$
+第二项：$(x)'=1$。两项相减：
+$$(\ln x+1)-1=\ln x$$
+求导结果与被积函数相同，答案正确。
+@@ANSWER
+$x\ln x-x+C$
+@@PITFALL
+最常见的错误是"想不到补因子 $1$"，看到单独的 $\ln x$ 就卡住，或者误以为 $\int\ln x\,dx=\frac{1}{x}+C$（那是把求导公式当成了积分公式）。第二个错误是求 $v$ 时把 $\int 1\,dx$ 写成 $1$，忘记积分后要乘 $x$。第三个错误是漏掉积分常数 $C$。
+@@TIPS
+以后看到"单独出现的 $\ln x$、$\arctan x$、$\arcsin x$"，都先在心里补一个因子 $1$，然后取 $u=$ 这个函数、$dv=dx$。这是同一套路，属于填空题的高频考点。
+@@SUMMARY
+看到单独的 $\ln x$（或 $\arctan x$、$\arcsin x$）→ 补因子 $1$，取 $u=$ 该函数、$dv=dx$。
+@@ENDPROBLEM
+
+@@PROBLEM id=6.3-4 type=变式 star=★★ time=6分钟 imp=★★★★ kp=积分/分部积分
+@@STEM
+求不定积分 $\int \arctan x\,dx$。（专项训练原创题）
+@@POINT
+分部积分与凑微分的连用：先用分部积分处理 $\arctan x$，剩下的积分再用第一换元法。
+@@IDENTIFY
+看到被积函数是单独的反三角函数 $\arctan x$ → 属于分部积分题（补因子 $1$）→ 用"取 $u=\arctan x$、$dv=dx$"，剩下的 $\int\frac{x}{1+x^2}dx$ 再用凑微分处理。
+@@FORMULAS
+1. 分部积分公式 $\int u\,dv=uv-\int v\,du$
+2. $(\arctan x)'=\frac{1}{1+x^2}$
+3. $\int\frac{x}{1+x^2}\,dx=\frac{1}{2}\ln(1+x^2)+C$
+@@IDEA
+$\arctan x$ 单独出现，和上一题一样要补因子 $1$，取 $u=\arctan x$、$dv=dx$。它的导数 $(\arctan x)'=\frac{1}{1+x^2}$ 是代数式，代公式后剩下的积分是 $\int\frac{x}{1+x^2}dx$。这个积分在 6.1 节练过：分子 $x$ 是分母 $1+x^2$ 的导数的一半，用凑微分令 $w=1+x^2$ 就能算出 $\frac{1}{2}\ln(1+x^2)$。所以本题是"分部积分 + 凑微分"的连用题型。
+@@SOLUTION
+第一步：补因子 $1$ 并确定 $u$ 与 $dv$：
+$$\int\arctan x\,dx=\int\arctan x\cdot 1\,dx$$
+取
+$$u=\arctan x,\qquad dv=dx$$
+第二步：求 $du$ 与 $v$。由反三角函数的求导公式
+$$du=\frac{1}{1+x^2}\,dx,\qquad v=\int 1\,dx=x$$
+第三步：代入分部积分公式：
+$$\int\arctan x\,dx=x\arctan x-\int x\cdot\frac{1}{1+x^2}\,dx=x\arctan x-\int\frac{x}{1+x^2}\,dx$$
+第四步：用凑微分算剩下的积分。令
+$$w=1+x^2$$
+两边微分得
+$$dw=2x\,dx$$
+所以
+$$x\,dx=\frac{1}{2}\,dw$$
+于是
+$$\int\frac{x}{1+x^2}\,dx=\int\frac{1}{w}\cdot\frac{1}{2}\,dw=\frac{1}{2}\ln|w|+C_1=\frac{1}{2}\ln(1+x^2)+C_1$$
+（这里 $1+x^2>0$，绝对值可以直接去掉。）
+代回得
+$$\int\arctan x\,dx=x\arctan x-\frac{1}{2}\ln(1+x^2)+C$$
+验算：对 $x\arctan x-\frac{1}{2}\ln(1+x^2)$ 逐项求导。
+第一项用乘积求导法则，取 $f=x$，$g=\arctan x$：
+$$(x\arctan x)'=1\cdot\arctan x+x\cdot\frac{1}{1+x^2}=\arctan x+\frac{x}{1+x^2}$$
+第二项用链式法则（外层是对数函数、内层 $1+x^2$）：
+$$\left(\frac{1}{2}\ln(1+x^2)\right)'=\frac{1}{2}\cdot\frac{2x}{1+x^2}=\frac{x}{1+x^2}$$
+两项相减：
+$$\left(\arctan x+\frac{x}{1+x^2}\right)-\frac{x}{1+x^2}=\arctan x$$
+求导结果与被积函数相同，答案正确。
+@@ANSWER
+$x\arctan x-\frac{1}{2}\ln(1+x^2)+C$
+@@PITFALL
+容易错的地方：① 把 $(\arctan x)'$ 记成 $\frac{1}{1-x^2}$ 或 $\frac{1}{\sqrt{1-x^2}}$（后者是 $\arcsin x$ 的导数）；② 第四步的凑微分漏掉系数 $\frac{1}{2}$，写成 $\ln(1+x^2)$；③ 把第二项的减号写成加号，或忘记写对数项。凡是用分部积分得到形如 $\int\frac{x}{1+x^2}dx$ 的积分，一定记得它带系数 $\frac{1}{2}$。
+@@TIPS
+以后看到单独出现的 $\arctan x$、$\arcsin x$、$\ln x$，一律补因子 $1$ 做分部积分；代公式后如果出现 $\int\frac{x}{1+x^2}dx$、$\int\frac{x}{\sqrt{1-x^2}}dx$ 这类尾巴，就回到 6.1 节的凑微分去解决。本章的方法常常是两节连用：分部积分先把复杂因子"降级"，凑微分再收尾。
+@@SUMMARY
+看到单独的 $\arctan x$ → 补因子 $1$ 分部积分 → 剩下的 $\int\frac{x}{1+x^2}dx$ 用凑微分得 $\frac{1}{2}\ln(1+x^2)$。
+@@ENDPROBLEM
+
+@@PROBLEM id=6.3-5 type=基础训练 star=★★ time=7分钟 imp=★★★★★ kp=积分/分部积分
+@@STEM
+求定积分 $\int_0^1 x e^{2x}\,dx$。（专项训练原创题）
+@@POINT
+分部积分在定积分中的使用：代公式时把上下限一起写上，最后代入求值。
+@@IDENTIFY
+看到被积函数是"幂函数 $x$ 乘指数函数 $e^{2x}$"，并且是积分区间 $0$ 到 $1$ 的定积分 → 属于分部积分题 → 用"取 $u=x$、$dv=e^{2x}dx$，用定积分形式 $\int_a^b u\,dv=\left[uv\right]_a^b-\int_a^b v\,du$"的方法。
+@@FORMULAS
+1. 定积分分部积分公式 $\int_a^b u\,dv=\left[uv\right]_a^b-\int_a^b v\,du$
+2. $\int e^{2x}\,dx=\frac{1}{2}e^{2x}+C$（第一换元法：$dx=\frac{1}{2}d(2x)$）
+3. $e^0=1$
+@@IDEA
+本题就是 6.1-1 与 6.3-1 的合并练习：指数上是 $2x$ 而不是 $x$，所以求 $v$ 时要用第一换元法带出系数 $\frac{1}{2}$；同时它是定积分，代分部积分公式时要把上下限"挂在"乘积项 $uv$ 上，最后一步老老实实代入求值。整个过程是：定 $u$、$dv$ → 求 $du$、$v$ → 代公式 → 代入上下限。
+@@SOLUTION
+第一步：确定 $u$ 与 $dv$。幂函数优先，取
+$$u=x,\qquad dv=e^{2x}\,dx$$
+第二步：求 $du$ 与 $v$：
+$$du=dx$$
+$$v=\int e^{2x}\,dx=\frac{1}{2}e^{2x}$$
+（这里用第一换元法：令 $s=2x$，$ds=2\,dx$，$dx=\frac{1}{2}ds$，所以 $\int e^{2x}dx=\frac{1}{2}\int e^s ds=\frac{1}{2}e^{2x}$。）
+第三步：代入定积分分部积分公式 $\int_0^1 u\,dv=\left[uv\right]_0^1-\int_0^1 v\,du$：
+$$\int_0^1 x e^{2x}\,dx=\left[x\cdot\frac{1}{2}e^{2x}\right]_0^1-\int_0^1\frac{1}{2}e^{2x}\,dx$$
+第四步：先算乘积项。在 $x=1$ 处：
+$$1\cdot\frac{1}{2}e^{2}=\frac{1}{2}e^{2}$$
+在 $x=0$ 处：
+$$0\cdot\frac{1}{2}e^{0}=0$$
+所以
+$$\left[\frac{x}{2}e^{2x}\right]_0^1=\frac{1}{2}e^{2}-0=\frac{1}{2}e^{2}$$
+第五步：再算剩下的定积分。
+$$\int_0^1\frac{1}{2}e^{2x}\,dx=\frac{1}{2}\left[\frac{1}{2}e^{2x}\right]_0^1=\frac{1}{4}\left(e^{2}-e^{0}\right)=\frac{1}{4}\left(e^{2}-1\right)$$
+第六步：两式相减。
+$$\int_0^1 x e^{2x}\,dx=\frac{1}{2}e^{2}-\frac{1}{4}\left(e^{2}-1\right)=\frac{1}{2}e^{2}-\frac{1}{4}e^{2}+\frac{1}{4}=\frac{1}{4}e^{2}+\frac{1}{4}=\frac{e^{2}+1}{4}$$
+验算：先检查原函数。设 $F(x)=\frac{x}{2}e^{2x}-\frac{1}{4}e^{2x}$，由乘积求导法则
+$$F'(x)=\left(\frac{1}{2}e^{2x}+x\cdot\frac{1}{2}\cdot 2e^{2x}\right)-\frac{1}{4}\cdot 2e^{2x}=\frac{1}{2}e^{2x}+x e^{2x}-\frac{1}{2}e^{2x}=x e^{2x}$$
+被积函数是 $F'$，所以 $\int_0^1 x e^{2x}dx=F(1)-F(0)$。计算：
+$$F(1)=\frac{1}{2}e^{2}-\frac{1}{4}e^{2}=\frac{1}{4}e^{2},\qquad F(0)=0-\frac{1}{4}=-\frac{1}{4}$$
+于是
+$$F(1)-F(0)=\frac{1}{4}e^{2}+\frac{1}{4}=\frac{e^{2}+1}{4}$$
+与上面的结果一致，答案正确。
+@@ANSWER
+$\frac{e^2+1}{4}$
+@@PITFALL
+常见错误：① 求 $v$ 时漏掉 $\frac{1}{2}$，把 $\int e^{2x}dx$ 写成 $e^{2x}$；② 用了定积分分部积分公式却只对乘积项代入上下限，剩下的积分忘记也要在 $0$ 到 $1$ 上算；③ 代入 $x=0$ 时把 $0\cdot\frac{1}{2}e^0$ 误算成 $\frac{1}{2}$；④ 最后一步符号出错，把 $-\frac{1}{4}(e^2-1)$ 写成 $-\frac{1}{4}e^2-1$，正确展开是 $-\frac{1}{4}e^2+\frac{1}{4}$。
+@@TIPS
+做定积分的分部积分题，记住"上下限跟着乘积项走，剩下的积分仍要在原区间上算"。写完答案后可以用"原函数求导 + 上下限相减"再验一次，只需要几十秒，却能挡住绝大多数符号和系数错误。
+@@SUMMARY
+看到定积分里"幂函数 × 指数函数"→ 用定积分分部积分公式，上下限挂在 $uv$ 上，剩下的积分仍在原区间上算。
+@@ENDPROBLEM
+
+@@PROBLEM id=6.3-6 type=提高训练 star=★★★ time=10分钟 imp=★★★★ kp=积分/分部积分
+@@STEM
+求不定积分 $\int e^x\sin x\,dx$。（根据 CMC 常见题型改编）
+@@POINT
+分部积分的"循环型"：连续两次分部积分后原积分重新出现，把原积分当成未知数解方程。
+@@IDENTIFY
+看到被积函数是"指数函数 $e^x$ 乘三角函数 $\sin x$"，两类函数的地位"对称"（谁求导都不消失）→ 属于分部积分的循环型 → 用"做两次分部积分，把原积分记为 $I$，得到关于 $I$ 的一次方程，解出 $I$"的方法。
+@@FORMULAS
+1. 分部积分公式 $\int u\,dv=uv-\int v\,du$
+2. $(\sin x)'=\cos x$，$(\cos x)'=-\sin x$
+3. $\int e^x\,dx=e^x+C$
+@@IDEA
+$e^x$ 和 $\sin x$ 是"老搭档"：$e^x$ 无论求导还是积分都是 $e^x$，$\sin x$ 求导变成 $\cos x$、再求导又变回 $-\sin x$。这类题无论怎么取 $u$ 都不会一次算完，但如果连续做两次分部积分，等号右边会重新冒出原来的积分 $\int e^x\sin x\,dx$。这时把原积分记成一个未知数 $I$，等式就变成"$I=$ 一堆东西 $-I$"这样的一次方程，解出来即可。注意两次分部积分中取 $u$ 的类型必须保持一致（第一次取三角函数，第二次也要取三角函数）。
+@@SOLUTION
+记
+$$I=\int e^x\sin x\,dx$$
+第一次分部积分：取
+$$u=\sin x,\qquad dv=e^x\,dx$$
+则
+$$du=\cos x\,dx,\qquad v=e^x$$
+代入公式 $\int u\,dv=uv-\int v\,du$：
+$$I=e^x\sin x-\int e^x\cos x\,dx$$
+记
+$$J=\int e^x\cos x\,dx$$
+第二次分部积分：仍然取三角函数当 $u$，即取
+$$u=\cos x,\qquad dv=e^x\,dx$$
+则
+$$du=-\sin x\,dx,\qquad v=e^x$$
+代入公式：
+$$J=e^x\cos x-\int e^x\cdot(-\sin x)\,dx=e^x\cos x+\int e^x\sin x\,dx=e^x\cos x+I$$
+把 $J$ 代回 $I$ 的表达式：
+$$I=e^x\sin x-\left(e^x\cos x+I\right)=e^x\sin x-e^x\cos x-I$$
+把右边的 $I$ 移到等号左边：
+$$I+I=e^x\sin x-e^x\cos x$$
+即
+$$2I=e^x\left(\sin x-\cos x\right)$$
+两边同除以 $2$，并补上积分常数：
+$$I=\frac{e^x}{2}\left(\sin x-\cos x\right)+C$$
+所以
+$$\int e^x\sin x\,dx=\frac{e^x}{2}\left(\sin x-\cos x\right)+C$$
+验算：对 $\frac{e^x}{2}(\sin x-\cos x)$ 求导，看成 $\frac{1}{2}\cdot e^x\cdot(\sin x-\cos x)$，用乘积求导法则 $(fg)'=f'g+fg'$，取 $f=e^x$，$g=\sin x-\cos x$：
+$$f'=e^x,\qquad g'=\cos x-(-\sin x)=\cos x+\sin x$$
+于是
+$$\left(\frac{e^x}{2}(\sin x-\cos x)\right)'=\frac{1}{2}\left[e^x(\sin x-\cos x)+e^x(\cos x+\sin x)\right]$$
+括号内合并同类项：
+$$\sin x-\cos x+\cos x+\sin x=2\sin x$$
+所以
+$$\frac{1}{2}\cdot e^x\cdot 2\sin x=e^x\sin x$$
+求导结果与被积函数相同，答案正确。
+@@ANSWER
+$\frac{e^x}{2}\left(\sin x-\cos x\right)+C$
+@@PITFALL
+最容易错的地方：① 两次分部积分取 $u$ 的类型不一致（第一次取 $\sin x$，第二次取 $e^x$），这样等号右边不会重新出现原积分，而是出现一个全新的积分，前功尽弃；② 第二次分部积分时把 $du=-\sin x\,dx$ 的负号漏掉，导致最后解出的答案符号相反；③ 得到 $2I=e^x(\sin x-\cos x)$ 后忘记除以 $2$，直接写答案；④ 忘记补积分常数 $C$。
+@@TIPS
+以后看到 $\int e^{ax}\sin bx\,dx$、$\int e^{ax}\cos bx\,dx$ 这类"指数乘三角"的积分，一律用"两次分部积分 + 解方程"。判断是否为循环型的标志是：两个因子里，一个求导（或积分）后形式不变或周期性变化，另一个求导后循环回来。这类题在填空题中出现频率很高，做熟了可以一步写出答案 $\frac{e^{ax}}{a^2+b^2}(a\sin bx-b\cos bx)+C$，但考试时建议还是把方程写出来。
+@@SUMMARY
+看到"指数函数 × 三角函数"→ 连续两次分部积分、两次都取三角函数当 $u$ → 原积分重新出现 → 记作 $I$ 解方程。
+@@ENDPROBLEM
